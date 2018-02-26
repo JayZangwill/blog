@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="https://github.com/JayZangwill/blog">
+  <title>css盒模型与定位 | Jay Zangwill</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="说到css的盒子模型和定位相信大家一定都听说过，因为它们是css中的基础，同时也是难点，这篇文章的作用在于基础知识的扫盲。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css盒模型与定位">
+<meta property="og:url" content="https://github.com/JayZangwill/blog/2016/12/15/css盒模型与定位/index.html">
+<meta property="og:site_name" content="Jay Zangwill">
+<meta property="og:description" content="说到css的盒子模型和定位相信大家一定都听说过，因为它们是css中的基础，同时也是难点，这篇文章的作用在于基础知识的扫盲。">
+<meta property="og:image" content="https://github.com/JayZangwill/blog/blog/img/box/box-model.png">
+<meta property="og:image" content="https://github.com/JayZangwill/blog/blog/img/box/width.png">
+<meta property="og:image" content="https://github.com/JayZangwill/blog/blog/img/box/width-box.png">
+<meta property="og:image" content="https://github.com/JayZangwill/blog/blog/img/box/padding.png">
+<meta property="og:image" content="https://github.com/JayZangwill/blog/blog/img/box/padding-box.png">
+<meta property="og:image" content="https://github.com/JayZangwill/blog/blog/img/box/padding-width.png">
+<meta property="og:image" content="https://github.com/JayZangwill/blog/blog/img/box/border.png">
+<meta property="og:image" content="https://github.com/JayZangwill/blog/blog/img/box/border-box.png">
+<meta property="og:image" content="https://github.com/JayZangwill/blog/blog/img/box/border-width.png">
+<meta property="og:image" content="https://github.com/JayZangwill/blog/blog/img/box/blue.png">
+<meta property="og:image" content="https://github.com/JayZangwill/blog/blog/img/box/margin.png">
+<meta property="og:image" content="https://github.com/JayZangwill/blog/blog/img/box/margin-box.png">
+<meta property="og:image" content="https://github.com/JayZangwill/blog/blog/img/box/margin-width.png">
+<meta property="og:image" content="https://github.com/JayZangwill/blog/blog/img/box/box-sizing.png">
+<meta property="og:image" content="https://github.com/JayZangwill/blog/blog/img/box/static.png">
+<meta property="og:image" content="https://github.com/JayZangwill/blog/blog/img/box/relative.png">
+<meta property="og:image" content="https://github.com/JayZangwill/blog/blog/img/box/absolute1.png">
+<meta property="og:image" content="https://github.com/JayZangwill/blog/blog/img/box/absolute2.png">
+<meta property="og:image" content="https://github.com/JayZangwill/blog/blog/img/box/absolute3.png">
+<meta property="og:image" content="https://github.com/JayZangwill/blog/blog/img/box/fixed.png">
+<meta property="og:image" content="https://github.com/JayZangwill/blog/blog/img/box/scroll.png">
+<meta property="og:image" content="https://github.com/JayZangwill/blog/blog/img/box/z-index1.png">
+<meta property="og:image" content="https://github.com/JayZangwill/blog/blog/img/box/z-index-box.png">
+<meta property="og:updated_time" content="2017-01-08T08:55:19.885Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css盒模型与定位">
+<meta name="twitter:description" content="说到css的盒子模型和定位相信大家一定都听说过，因为它们是css中的基础，同时也是难点，这篇文章的作用在于基础知识的扫盲。">
+<meta name="twitter:image" content="https://github.com/JayZangwill/blog/blog/img/box/box-model.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Jay Zangwill" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/blog/touxiang.ico">
+  
+  <link rel="stylesheet" href="/blog/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/blog/touxiang.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Jay Zangwill</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/blog/">主页</a></li>
+	        
+				<li><a href="/blog/archives">所有文章</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/JayZangwill" title="github">github</a>
+		        
+					<a class="rss" target="_blank" href="/blog/atom.xml" title="rss">rss</a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/zhang-jie-24-34-16" title="zhihu">zhihu</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Jay Zangwill</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/blog/touxiang.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Jay Zangwill</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/blog/">主页</a></li>
+		        
+					<li><a href="/blog/archives">所有文章</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/JayZangwill" title="github">github</a>
+			        
+						<a class="rss" target="_blank" href="/blog/atom.xml" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/zhang-jie-24-34-16" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-css盒模型与定位" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      css盒模型与定位
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>说到css的盒子模型和定位相信大家一定都听说过，因为它们是css中的基础，同时也是难点，这篇文章的作用在于基础知识的扫盲。</p>
+<a id="more"></a>
+<p>先来说说盒子模型吧</p>
+<h1 id="什么是盒子模型"><a href="#什么是盒子模型" class="headerlink" title="什么是盒子模型"></a>什么是盒子模型</h1><p>简单地说每个html标签都是一个方块，然后这个方块又包着几个小方块。分别是：margin、border、padding、content。它们的关系是margin包着border包着padding包着content。就像盒子一层一层地包着一样，这就是我们所说的盒模型。<br>嗯，看上面的文字有点文绉绉的，我们直接上图吧。<br>打开谷歌浏览器，按下F12，然后把右边栏的滚动条拉到最下面你就会看到一个东西：</p>
+<p><img src="/blog/img/box/box-model.png" alt="盒模型"></p>
+<p>这就很直观给我们展示了什么是盒子模型！</p>
+<h1 id="盒子有多大"><a href="#盒子有多大" class="headerlink" title="盒子有多大"></a>盒子有多大</h1><p>我相信这个问题肯定会问倒很多人，这个问题是个非常经典的问题。我在百度上查都能查到有很多人写的博客上都在这方面有错误，所以，我觉得我有必要在这篇文章上讲清楚盒子到底有多大。<br>老规矩，先上代码</p>
+<pre><code>.red{
+    width:200px;
+    height:200px;
+    background-color:red;
+}
+</code></pre><p>补全html代码就会在页面左上角出现这么个玩意儿：</p>
+<p><img src="/blog/img/box/width.png" alt="红色方块"></p>
+<p>对应的盒子模型：</p>
+<p><img src="/blog/img/box/width-box.png" alt="红色方块的盒子模型"></p>
+<p>很明显这个时候的盒子大小就是content的大小。来，我们继续往下走，我们给这个方块加上padding：</p>
+<pre><code>.red{
+    width:200px;
+    height:200px;
+    padding:10px;
+    background-color:red;
+}
+</code></pre><p>这时你就会发现这个方块比原来稍微胖了那么一点：</p>
+<p><img src="/blog/img/box/padding.png" alt="加上padding的红色方块"></p>
+<p>对应的盒模型：</p>
+<p><img src="/blog/img/box/padding-box.png" alt="加上padding的红色方块的盒子模型"></p>
+<p>这个时候将鼠标移到控制台上的这个元素你就会发现：</p>
+<p><img src="/blog/img/box/padding-width.png" alt="加上padding的红色方块的长宽"></p>
+<p>下面写有盒子的长宽变成了<code>220x220</code>，很明显，padding是能够改变盒子的大小的，这时盒子大小就等于content+padding。</p>
+<p>接下来，我们给盒子加上边框：</p>
+<pre><code>.red{
+    width:200px;
+    height:200px;
+    padding:10px;
+    border:10px solid black;
+    background-color:red;
+}
+</code></pre><p>这个时候变成了下面这样：</p>
+<p><img src="/blog/img/box/border.png" alt="加上border的红色方块"></p>
+<p>盒模型：</p>
+<p><img src="/blog/img/box/border-box.png" alt="加上border的红色方块的盒模型"></p>
+<p>它的长宽：</p>
+<p><img src="/blog/img/box/border-width.png" alt="加上border的红色方块的长宽"></p>
+<p>可以发现长宽变为了<code>240x240</code>，所以这时盒子大小就等于content+padding+border。</p>
+<p>接下来讲margin。在给这个方块加margin之前为了方便观察我们加个类名为blue的div，并且加上样式：</p>
+<pre><code>.blue{
+    width:100px;
+    height:100px;
+    background-color:blue;
+}
+</code></pre><p>效果图：</p>
+<p><img src="/blog/img/box/blue.png" alt="加个蓝色方块"></p>
+<p>因为div是块级元素，所以新加的蓝色div自动跑到红色的下面。<br>接下来给红色方块加上margin-bottom：</p>
+<pre><code>.red{
+    width:200px;
+    height:200px;
+    padding:10px;
+    margin-bottom:10px;
+    border:10px solid black;
+    background-color:red;
+}
+</code></pre><p>效果图：</p>
+<p><img src="/blog/img/box/margin.png" alt="加上margin"></p>
+<p>可以发现，盒子的底部产生了10px的空白。</p>
+<p>对应的盒模型</p>
+<p><img src="/blog/img/box/margin-box.png" alt="加上margin的红色方块的盒模型"></p>
+<p>方块的长宽</p>
+<p><img src="/blog/img/box/margin-width.png" alt="加上margin的红色方块的长宽"></p>
+<p>很明显盒子的大小并没有变大，还是原来的<code>240x240</code>。</p>
+<p>所以，最终盒子的大小为content+padding+border即内容的(width)+内边距的再加上边框，而不加上margin。</p>
+<p>看到网上很多文章都把margin算进去了，如果按照他们所说的，上面盒子的大小应该是<code>240x250</code>，然而实际情况并不是。从这里可以看出，很多人对盒模型有误解。<strong>把margin算进去的那是盒子占据的位置，而不是盒子的大小！</strong></p>
+<p>其实盒模型一共分为两种，一种是上面讲的标准盒模型，还有一种是怪异盒模型，这两种盒模型的区别在于width/height。前者width/height指的是content区域的宽度和高度，后者width/height指的是content+padding+border。</p>
+<p>在ie8+浏览器中使用哪个盒模型可以由<code>box-sizing</code>控制，默认值为<code>content-box</code>，即标准盒模型；如果将<code>box-sizing</code>设为<code>border-box</code>则用的是怪异盒模型。如果在ie6,7,8中DOCTYPE缺失会触发怪异模式。</p>
+<p>我们可以把上面的红色方块的<code>box-sizing</code>设为<code>border-box</code>发现，无论我们怎么改border和padding盒子大小始终是定义的width和height：</p>
+<p><img src="/blog/img/box/box-sizing.png" alt="box-sizing"></p>
+<h1 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h1><p>定位<code>(position)</code>有四个值：</p>
+<ol>
+<li>static</li>
+<li>relative</li>
+<li>absolute</li>
+<li>fixed</li>
+</ol>
+<h2 id="static"><a href="#static" class="headerlink" title="static"></a>static</h2><p>一般如果我们不设置<code>position</code>的话它的默认值就是<code>static</code>，这个时候left、top、bottom、right是不起作用的<br>，现在有如下两个div，他们的关系是兄弟关系：</p>
+<pre><code>.red{
+    width:200px;
+    height:200px;
+    left:100px;
+    top:100px;
+    background-color:red;
+}
+.blue{
+    width:100px;
+    height:100px;
+    background-color:blue;
+}
+</code></pre><p>效果图：</p>
+<p><img src="/blog/img/box/static.png" alt="static"></p>
+<p>可以发现，并没有什么变化。红色方块的<code>left</code>和<code>top</code>加不加都一样。</p>
+<h2 id="relative"><a href="#relative" class="headerlink" title="relative"></a>relative</h2><p>但是，现在我们给红色方块加个<code>position:relative</code>：</p>
+<pre><code>.red{
+    position:relative;
+    width:200px;
+    height:200px;
+    left:100px;
+    top:100px;
+    background-color:red;
+}
+</code></pre><p>嘿嘿，变这样了：</p>
+<p><img src="/blog/img/box/relative.png" alt="relative"></p>
+<p>可以发现，红色方块跑到蓝色方块的右边了，左边缘和顶边缘都距离原来100px，但是蓝色方块还是在原来的地方不动，现在可以得出一个结论：<strong>使用相对定位给元素加left/top/right/buttom元素会以原来的位置为基础加上这些值，即以原来的位置为基础定位，并且没有脱离文档流</strong></p>
+<p>嗯，是不是看起来有点文绉绉的，那来个形象的比喻吧：</p>
+<p>假如<code>position:static</code>是一个活人的话，并且拥有灵魂，这个时候我想给他加个<code>left:100px</code>想让他的灵魂出来，但是并没有效果。当这个人刚去世而且尸体还没火化的时候(相当于<code>position:relative</code>)，这时我加个<code>left:100px</code>灵魂就可以移动了，并且灵魂往尸体的右边移动了100px。因为尸体还没火化，所以这个人还是占一定的空间的。</p>
+<h2 id="absolute"><a href="#absolute" class="headerlink" title="absolute"></a>absolute</h2><p>现在，我们把<code>position</code>改为<code>absolute</code>：</p>
+<pre><code>.red{
+    position:absolute;
+    width:200px;
+    height:200px;
+    left:100px;
+    top:100px;
+    background-color:red;
+}
+</code></pre><p>效果图：</p>
+<p><img src="/blog/img/box/absolute1.png" alt="absolute"></p>
+<p>可以发现蓝色方块如我们所愿移动到了红色方块的上面，说明红色方块已经脱离文档流。虽然红色方块的位移和<code>relative</code>一样但是，红色方块位移的参考不再是原来的位置而是body只不过红色方块的位置刚好在body的最左上角，刚好碰巧位移一样，上面的这个例子可能看不出来，让我们来改改代码。</p>
+<p>首先将html结构改成：</p>
+<pre><code>&lt;div class=&quot;red&quot;&gt;
+    &lt;div class=&quot;blue&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>然后红色方块的<code>absolute</code>改回<code>relative</code></p>
+<p>效果图：</p>
+<p><img src="/blog/img/box/absolute2.png" alt="absolute"></p>
+<p>然后蓝色方块代码改为：</p>
+<pre><code>.blue{
+    position:absolute;
+    top:100px;
+    left:100px;
+    width:100px;
+    height:100px;
+    background-color:blue;
+}
+</code></pre><p><img src="/blog/img/box/absolute3.png" alt="absolute"></p>
+<p>可以发现在给蓝色方块添加<code>position:absolute</code>前，蓝色方块像我们想的那样在红色方块的左上角；当我们给蓝色方块添加<code>position:absolute</code>并且添加<code>left</code>和<code>top</code>时，蓝色方块就跑到了红色方块的右下角。</p>
+<p>那么这次这个蓝色方块是以谁为参考进行位移的？刚刚你说的以body为参考又是什么情况？</p>
+<p>好，我这里就给大家说清楚，当给一个元素设置<code>position:absolute</code>时，这个元素的位置就是以他父代元素<code>position</code>不为<code>static</code>的元素作为参考，如果他的父代元素都是<code>position:static</code>那就以body作为参考。刚刚红色方块的情况就是他父代元素没有<code>position</code>不为<code>static</code>的元素，所以只能以body作为参考。</p>
+<p>嗯，讲的文绉绉的，我不喜欢。来，举个例子：</p>
+<p>还是刚刚那个人与灵魂的例子，当设置<code>position:absolute</code>时，就相当于人死了，尸体已经火化了，只剩下灵魂和骨灰，所以是不占空间的(就是已经脱离文档流)。这个时候灵魂可以乱飘了，但是有个限制，只能相对于骨灰飘。</p>
+<h2 id="fixed"><a href="#fixed" class="headerlink" title="fixed"></a>fixed</h2><p>现在让我们再来创建一个绿色方块：</p>
+<pre><code>.green{
+    position:fixed;
+    top:150px;
+    left:150px;
+    width:100px;
+    height:100px;
+    background-color:green;
+}
+</code></pre><p>效果图：</p>
+<p><img src="/blog/img/box/fixed.png" alt="fixed"></p>
+<p>这个看起来貌似没有什么特别的，现在我们来给body加个<code>height:2000px</code>(这个高度随意，但是要使浏览器右边出现滚动条)，然后把浏览器的滚动条往下拉，一个神奇的事情发生了：绿色方块固定在我们定义的位置上屏幕上不动了！</p>
+<p><img src="/blog/img/box/scroll.png" alt="scroll"></p>
+<p>这个fixed我们见得最多的就是网页中顽固的小广告，不管我们怎么拖拽滚动条，它总是固定在那，就是一个升级版的<code>absolute</code>。</p>
+<p>用上面的例子来说就是人已经成仙了，可以不受限制地乱飘，而且不管你怎么拉，都拉不动他，他就在那不动了！</p>
+<h2 id="z-index"><a href="#z-index" class="headerlink" title="z-index"></a>z-index</h2><p>说到定位，肯定少不了z-index。用上面的例子来说z-index就是灵魂飘的高度，设置得越大，自然就飘得越高，既然扯到了灵魂，z-index肯定是对活人(<code>static</code>)无效的了。</p>
+<p>正常情况下(没有加z-index)，元素是按照后来居上原则进行堆叠。在这个例子上的html元素是这样的：</p>
+<pre><code>&lt;div class=&quot;red&quot;&gt;
+        &lt;div class=&quot;blue&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;div class=&quot;green&quot;&gt;&lt;/div&gt;
+</code></pre><p>按照后来居上原则，红色方块最先被浏览器渲染到，所以在最下面，其次到蓝色，最后到绿色。</p>
+<p>如果我们想让红色方块显示到前面我们可以给它加个<code>z-index:1</code>，结果：</p>
+<p><img src="/blog/img/box/z-index1.png" alt="z-index"></p>
+<p>发现绿色方块“消失了”。其实绿色方块并没有消失，你可以将滚动条往下拉，或者看盒子模型：</p>
+<p><img src="/blog/img/box/z-index-box.png" alt="z-index"></p>
+<p>可以发现它并没有消失，只是被盖在了红色方块下面。由于红色方块与蓝色方块是父子关系，红色的上来了，蓝色肯定的上来啊。</p>
+<p>现在我有个想法，想让蓝色方块弄到红色方块下面该怎么办？很多人可能会想到简单啊，直接给蓝色方块加个<code>z-index:-1</code>不就得了吗？但是很可惜，没用。</p>
+<p>要解释这个现象就得扯到<strong>层叠上下文</strong>的东西了。解释这东西又得花些篇幅来讲，具体的可以看<a href="http://www.zhangxinxu.com/wordpress/2016/01/understand-css-stacking-context-order-z-index/" target="_blank" rel="external">这里</a>。</p>
+<p>这里我就一笔带过了，用最通俗易懂的例子来解释了，老爸的灵魂包着儿子的灵魂飘到了一楼(z-index:1)，但是儿子想下到-1楼(z-index:-1)这是不行的因为儿子的灵魂已经被老爸的灵魂包着了(当z-index为数值时，会产生层叠上下文)，如果儿子想下到一楼，得先不让老爸的灵魂包着儿子的灵魂(不设置红色方块的z-index或者设置为z-index:auto)，这样就能下到-1楼了这样蓝色方块就被红色方块挡住了。</p>
+<p>但是不设置红色的<code>z-index</code>的话，绿色方块又出来作怪了，这个时候只能设置绿色方块<code>z-index:-1</code>，红色方块就没谁能挡得住了！</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
+<li>css的盒模型由content(内容)、padding(内边距)、border(边框)、margin(外边距)组成。</li>
+<li>在w3c和模型中，设置的width/height是content的宽度/高度，在怪异模式中width/height设置的是content+padding+border宽度/高度。</li>
+<li>在w3c盒子模型中盒子的大小由content、padding、border决定，在在怪异模式中盒子大小由width和height决定。</li>
+<li>定位有四个值static(静止)、relative(相对)、absolute(绝对)、fixed(固定)。</li>
+<li>left、top、right、bottom、z-index不能对static起作用。</li>
+</ol>
+<p>有什么问题可以在下面留言哦，会及时给出答复的。</p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/blog/2016/12/15/css盒模型与定位/" class="archive-article-date">
+  	<time datetime="2016-12-15T08:25:28.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-12-15</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/基础/">基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/定位/">定位</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/盒模型/">盒模型</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/blog/2016/11/07/javscript的数据类型/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">javscript的数据类型</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="css盒模型与定位" data-title="css盒模型与定位" data-url="https://github.com/JayZangwill/blog/blog/2016/12/15/css盒模型与定位/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"zj123"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 Jay Zangwill
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/blog/",
+		innerArchive: false
+	}
+</script>
+
+<script src="/blog/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/blog/tags/angular/" style="font-size: 15px;">angular</a> <a href="/blog/tags/css/" style="font-size: 10px;">css</a> <a href="/blog/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blog/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/blog/tags/sass/" style="font-size: 10px;">sass</a> <a href="/blog/tags/vue/" style="font-size: 10px;">vue</a> <a href="/blog/tags/基础/" style="font-size: 20px;">基础</a> <a href="/blog/tags/定位/" style="font-size: 10px;">定位</a> <a href="/blog/tags/心情/" style="font-size: 10px;">心情</a> <a href="/blog/tags/盒模型/" style="font-size: 10px;">盒模型</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">点这里&lt;a href=&quot;http://jayzangwill.github.io/home#about&quot;&gt;关于我</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

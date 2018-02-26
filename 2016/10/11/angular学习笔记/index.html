@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="https://github.com/JayZangwill/blog">
+  <title>angular学习笔记(1) | Jay Zangwill</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="angular学习笔记(1)由于之前学习了vue，所以学习angular感觉还蛮顺的，因为这两个框架有很多相似之处，例如：
+1. 输出都可以用双括号{{}}
+2. 都有双向数据绑定
+3. 指令也有很多相似的地方，这里就不一一列举了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="angular学习笔记(1)">
+<meta property="og:url" content="https://github.com/JayZangwill/blog/2016/10/11/angular学习笔记/index.html">
+<meta property="og:site_name" content="Jay Zangwill">
+<meta property="og:description" content="angular学习笔记(1)由于之前学习了vue，所以学习angular感觉还蛮顺的，因为这两个框架有很多相似之处，例如：
+1. 输出都可以用双括号{{}}
+2. 都有双向数据绑定
+3. 指令也有很多相似的地方，这里就不一一列举了">
+<meta property="og:updated_time" content="2016-11-06T11:19:55.256Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="angular学习笔记(1)">
+<meta name="twitter:description" content="angular学习笔记(1)由于之前学习了vue，所以学习angular感觉还蛮顺的，因为这两个框架有很多相似之处，例如：
+1. 输出都可以用双括号{{}}
+2. 都有双向数据绑定
+3. 指令也有很多相似的地方，这里就不一一列举了">
+  
+    <link rel="alternative" href="/atom.xml" title="Jay Zangwill" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/blog/touxiang.ico">
+  
+  <link rel="stylesheet" href="/blog/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/blog/touxiang.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Jay Zangwill</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/blog/">主页</a></li>
+	        
+				<li><a href="/blog/archives">所有文章</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/JayZangwill" title="github">github</a>
+		        
+					<a class="rss" target="_blank" href="/blog/atom.xml" title="rss">rss</a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/zhang-jie-24-34-16" title="zhihu">zhihu</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Jay Zangwill</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/blog/touxiang.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Jay Zangwill</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/blog/">主页</a></li>
+		        
+					<li><a href="/blog/archives">所有文章</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/JayZangwill" title="github">github</a>
+			        
+						<a class="rss" target="_blank" href="/blog/atom.xml" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/zhang-jie-24-34-16" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-angular学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      angular学习笔记(1)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="angular学习笔记-1"><a href="#angular学习笔记-1" class="headerlink" title="angular学习笔记(1)"></a>angular学习笔记(1)</h1><p>由于之前学习了vue，所以学习angular感觉还蛮顺的，因为这两个框架有很多相似之处，例如：</p>
+<pre><code>1. 输出都可以用双括号{{}}
+2. 都有双向数据绑定
+3. 指令也有很多相似的地方，这里就不一一列举了
+</code></pre><a id="more"></a>
+<p>下面准备开始，在开始之前先说明：下面代码的html文件的文档声明，还有头标签、文件的引入都省略了，直接从<code>ng-app</code>的内部开始写代码，js文件的模块声明如果没有特殊情况会默认使用<code>var myApp=angular.module(&quot;myApp&quot;,[]);</code></p>
+<h1 id="angular的模块化"><a href="#angular的模块化" class="headerlink" title="angular的模块化"></a>angular的模块化</h1><p>在学习angular听到最多的就是模块化，任何一个功能都是模块。 </p>
+<p>首先，要想用angular就得先引入angular.js文件，然后在<em>.html</em>文件中标签加入<code>ng-app</code>属性，(一般加在<code>html</code>标签或者<code>body</code>后面加，作为根部作用域)，告诉angular下面这块内容由angular管，同时自动启动angular，例如以下代码： </p>
+<pre><code>&lt;html ng-app=&quot;myApp&quot;&gt;
+    &lt;!--这里是angular的作用范围--&gt;
+&lt;/html&gt;
+</code></pre><p>然后在自己的<em>.js</em>文件中声明一个变量，用于储存angular返回的模块： </p>
+<pre><code>var myApp=angular.module(&quot;myApp&quot;,[]);
+</code></pre><p>括号中的<code>myApp</code>是标签中<code>ng-app</code>的属性值<code>&quot;myApp&quot;</code>，后面的中括号是模块的依赖项，第三个参数是一个回调函数，用来定义angular的一些服务。</p>
+<p>如果在<em>html</em>文件里面如果没有写<code>ng-app</code>，这个时候就得在<em>js</em>文件里手动启动angular： </p>
+<pre><code>angular.element(document).ready(function(){
+    angular.bootstrap(document,&quot;myApp&quot;);
+});
+</code></pre><p>同一个<code>ng-app</code>不能启动两次，如果启动两次会报错！</p>
+<p><strong>注意：</strong>一般一个应用中只能有一个<code>ng-app</code>，当然有少数情况也会有多个<code>ng-app</code>，但是<code>ng-app</code>不能嵌套在<code>ng-app</code>中，这个时候第二个以后的<code>ng-app</code>需要手动启动，不过一般不建议有多个<code>ng-app</code>。</p>
+<h1 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h1><p>一个应用中可以有多个控制器，一般一个控制器用于管理应用中的一个功能，例如：</p>
+<p>HTML：</p>
+<pre><code>&lt;div ng-controller=&quot;controller1&quot;&gt;
+    &lt;!--这里是一些指令--&gt;
+&lt;/div&gt;
+&lt;div ng-controller=&quot;controller2&quot;&gt;
+    &lt;!--这里是一些指令--&gt;
+&lt;/div&gt;
+</code></pre><p>JS：</p>
+<pre><code>myApp.controller(&quot;controller1&quot;,[&quot;$scope&quot;,function($scope){
+    //这里是一些逻辑
+}]);
+myApp.controller(&quot;controller2&quot;,[&quot;$scope&quot;,function($scope){
+    //这里是一些逻辑
+}]);
+</code></pre><p>js中的<code>myApp</code>就是上面<code>angular.module(&quot;myApp&quot;,[])</code>返回的模块，调用<code>controller</code>方法创建一个控制器，第一个参数是HTML中<code>ng-controller</code>的属性值，第二个参数是一个数组，里面包含了控制器的一些依赖还有回调函数，<code>$scope</code>是angular的作用域，一般用于存储各种变量。</p>
+<p>在angular中还有一个<code>$rootScope</code>，它是angular的根作用域链，类似于js中的全局作用域，定义在<code>$rootScrop</code>上的变量所有控制器都可以访问。</p>
+<p><strong>注意：</strong></p>
+<pre><code>1. 不要去复用controller，一个控制器一般只负责一块视图
+2. 不要再controller中操作DOM，这不是控制器的职责
+3. 不要再controller里面做数据格式化
+4. 不要再controller里面做数据操作
+5. 一般来说，controller不会互相调用，控制器之间的交互只会通过事件来进行
+</code></pre><h1 id="双向数据绑定"><a href="#双向数据绑定" class="headerlink" title="双向数据绑定"></a>双向数据绑定</h1><p>当年angular火有一部分原因是因为它实现了数据的双向绑定，这是其他框架都没有实现的。<br>所谓的双向数据绑定就是：数据模型里面的值变了，视图也会跟着变，反过来也是，像下面：</p>
+<p>HTML：</p>
+<pre><code>&lt;div ng-controller=&quot;controller&quot;&gt;
+   &lt;input type=&quot;text&quot; ng-model=&quot;name&quot;&gt;
+   &lt;div&gt;{{name}}&lt;div&gt;
+&lt;/div&gt;
+</code></pre><p>JS：</p>
+<pre><code>myApp.controller(&quot;controller&quot;,[&quot;$scope&quot;,function($scope){
+    $scope.name=&quot;张三&quot;;
+}]);
+</code></pre><p>运行以上代码在页面中就会看见有一个输入框里面的值是张三，下面有一段字也是张三。当我们改变输入框中的值会发现下面的那段字也会变，这就实现了数据的双向绑定。</p>
+<h1 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h1><p>angular还有一个吸引人的地方就是指令系统。angular内置了很多的指令，同时，还可以让我们自定义指令。前面说到的<code>ng-app</code>和<code>ng-controller</code>就是指令。</p>
+<h2 id="ng-bind"><a href="#ng-bind" class="headerlink" title="ng-bind"></a>ng-bind</h2><p>HTML：</p>
+<pre><code>&lt;div ng-bind=&quot;name&quot;&gt;&lt;/div&gt;
+</code></pre><p>JS：</p>
+<pre><code>myApp.controller(&quot;controller&quot;,[&quot;$scope&quot;,function($scope){
+    $scope.name=&quot;张三&quot;;
+}]);
+</code></pre><p>在页面中也会输出张三，和<em>双花括号</em>的作用一样，但是使用<code>ng-bind</code>的好处就是，当页面加载速度慢的时候页面中不会出现<em>双花括号</em>，保证了页面的美观性。</p>
+<h2 id="ng-class"><a href="#ng-class" class="headerlink" title="ng-class"></a>ng-class</h2><p>HTML：</p>
+<pre><code>&lt;div ng-class=&quot;my-style:true&quot;&gt;&lt;/div&gt;
+</code></pre><p><code>ng-class</code>一般用于控制class是否使用，如果<code>:</code>后面的表达式为<code>true</code>，就使用<code>:</code>前面的类名。</p>
+<h2 id="ng-show和ng-hide"><a href="#ng-show和ng-hide" class="headerlink" title="ng-show和ng-hide"></a>ng-show和ng-hide</h2><p>HTML：</p>
+<pre><code>&lt;div ng-show=&quot;true&quot;&gt;我是显示的&lt;/div&gt;
+&lt;div ng-hide=&quot;true&quot;&gt;我是隐藏的&lt;/div&gt;
+</code></pre><p>当<code>ng-show</code>后面的变量为<code>true</code>时，这个html元素就会显示，为<code>false</code>时就回隐藏，<code>ng-hide</code>刚好相反。</p>
+<h2 id="ng-repeat"><a href="#ng-repeat" class="headerlink" title="ng-repeat"></a>ng-repeat</h2><p>HTML：</p>
+<pre><code>&lt;div ng-controller=&quot;myController&quot;&gt;
+    &lt;ul&gt;
+        &lt;li ng-repeat=&quot;data in datas&quot;&gt;{{data}}&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre><p>JS：</p>
+<pre><code>myApp.controller(&quot;myController&quot;,[&quot;$scope&quot;,function($scope){
+    $scope.datas=[&quot;张三&quot;，&quot;李四&quot;,&quot;王五&quot;];
+}]);
+</code></pre><p>这个时候页面就会输出：</p>
+<pre><code>1. 张三
+2. 李四
+3. 王五
+</code></pre><p><code>ng-repeat</code>就是用来遍历数据，并且把数据在页面中全部渲染出来，非常方便。</p>
+<h2 id="ng-style"><a href="#ng-style" class="headerlink" title="ng-style"></a>ng-style</h2><p>HTML：</p>
+<pre><code>&lt;div ng-style=&quot;{&apos;color&apos;:&apos;red&apos;,&apos;background-color&apos;:&apos;green&apos;}&quot;&gt;字的颜色石红的，背景是绿的&lt;/div&gt;
+</code></pre><h2 id="ng-class-even和ng-class-odd"><a href="#ng-class-even和ng-class-odd" class="headerlink" title="ng-class-even和ng-class-odd"></a>ng-class-even和ng-class-odd</h2><p>HTML：</p>
+<pre><code>&lt;div ng-controller=&quot;myController&quot;&gt;
+    &lt;ul&gt;
+        &lt;li ng-class-even=&quot;&apos;even-style&apos;&quot; ng-class-odd=&quot;&apos;odd-style&apos;&quot; ng-repeat=&quot;data in datas&quot;&gt;{{data}}&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre><p>JS：</p>
+<pre><code>myApp.controller(&quot;myController&quot;,[&quot;$scope&quot;,function($scope){
+    $scope.datas=[&quot;张三&quot;，&quot;李四&quot;,&quot;王五&quot;];
+}]);
+</code></pre><p>这样当<code>li</code>为奇数时，就会用<code>even-style</code>的class类，当<code>li</code>为偶数时就会用<code>odd-style</code>的class类。</p>
+<h2 id="ng-click"><a href="#ng-click" class="headerlink" title="ng-click"></a>ng-click</h2><p>HTML：</p>
+<pre><code>&lt;div ng-controller=&quot;myController&quot;&gt;
+    &lt;button ng-click=&quot;changeStatus()&quot;&gt;点我&lt;/button&gt;
+&lt;/div&gt;
+&lt;p&gt;{{status}}&lt;/p&gt;
+</code></pre><p>JS：</p>
+<pre><code>myApp.controller(&quot;myController&quot;,[&quot;$scope&quot;,function($scope){
+    $scope.status=false;
+    $scope.changeStatus=function(){
+        $scope.status=!$scope.status;
+    }
+}]);
+</code></pre><p>每点一次按钮，<code>changeStatus</code>函数就会执行一次，<code>stauts</code>的值就会改变一次</p>
+<h2 id="ng-switch"><a href="#ng-switch" class="headerlink" title="ng-switch"></a>ng-switch</h2><p>HTML：</p>
+<pre><code>&lt;div ng-controller=&quot;myController&quot;&gt;
+    &lt;button ng-click=&quot;changeStatus()&quot;&gt;点我&lt;/button&gt;
+        &lt;ol switch=&quot;status&quot;&gt;
+            &lt;li ng-switch-when=&quot;true&quot;&gt;
+                当值为true才会显示
+            &lt;/li&gt;
+            &lt;li ng-switch-when=&quot;false&quot;&gt;
+                当值为false才会显示
+            &lt;/li&gt;
+        &lt;/ol&gt;
+&lt;/div&gt;
+&lt;p&gt;{{status}}&lt;/p&gt;
+</code></pre><p>JS：</p>
+<pre><code>myApp.controller(&quot;myController&quot;,[&quot;$scope&quot;,function($scope){
+    $scope.status=false;
+    $scope.changeStatus=function(){
+        $scope.status=!$scope.status;
+    }
+}]);
+</code></pre><h2 id="ng-init"><a href="#ng-init" class="headerlink" title="ng-init"></a>ng-init</h2><p>HTML：</p>
+<pre><code>&lt;div ng-init=&quot;[firstName=&apos;张&apos;,lastName=&apos;三&apos;]&quot;&gt;
+    {{firstName+lastName}}
+&lt;/div&gt;
+</code></pre><p>这是页面就会输出<code>&quot;张三&quot;</code>。<code>ng-init</code>用于初始化变量，不过初始化变量一般不这么做。</p>
+<h2 id="ng-src"><a href="#ng-src" class="headerlink" title="ng-src"></a>ng-src</h2><p>HTML：</p>
+<pre><code>&lt;img ng-src={{imgUrl}} alt=&quot;图片&quot;&gt;
+</code></pre><p><code>ng-src</code>是用于解决 <code>src</code>属性用ng表达式bug的一个指令，如果地址中包含ng表达式，用<code>ng-src</code>比较好。</p>
+<h2 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a>自定义指令</h2><p>在angular内置的这些指令中肯定是不够用的，所以，angualr可以给我们自定义指令：</p>
+<p>HTML：</p>
+<pre><code>&lt;hello-world&gt;oldValue&lt;/hello-world&gt;
+&lt;div class=&quot;hello-world&quot;&gt;oldValue&lt;/div&gt;
+&lt;!-- directive:hello-world --&gt;
+&lt;div&gt;oldValue&lt;/div&gt;
+&lt;div hello-world&gt;oldValue&lt;/div&gt;
+</code></pre><p>JS：</p>
+<pre><code>myApp.directive(&quot;helloWorld&quot;,[function(){
+    return{
+        restrict: &apos;ECMA&apos;,
+        template:&quot;&lt;div&gt;newValue&lt;span ng-transclude&gt;&lt;/span&gt;&lt;/div&gt;&quot;,
+        replace:true,
+        transclude:true,
+        link:function(){
+            //在这里可以操作DOM、给元素绑定事件
+        }
+    }
+}]);
+</code></pre><p>js部分有个<code>restrict</code>这个是匹配模式，用于匹配不同的属指令创建方式。</p>
+<p>E代表匹配元素模式，也就是我们说的html标签<code>&lt;hello-world&gt;oldValue&lt;/hello-world&gt;</code>，当需要创建带有自己的模板的指令时，使用这种方法。</p>
+<p>C匹配class模式，就是上面的<code>&lt;div class=&quot;hello-world&quot;&gt;oldValue&lt;/div&gt;</code></p>
+<p>M代表匹配注释模式，就是上面的<code>&lt;!-- directive:hello-world --&gt; &lt;div&gt;oldValue&lt;/div&gt;</code>，这里需要注意的就是注释的开头和结尾要有个空格，不然angular是识别不出的。</p>
+<p>A代表属性模式，即<code>&lt;div hello-world&gt;oldValue&lt;/div&gt;</code>，当要为已有的HTML标签增加功能时，使用这种方法创建指令，这也是angular默认的匹配方式。</p>
+<p><code>template</code>是填充到标签里的内容</p>
+<p><code>template</code>里可以看到有个<code>ng-transclude</code>指令，这个指令是在下面的<code>replace</code>和<code>transclude</code>值为<code>true</code>时才有用。当<code>replace</code>为真时原来的<em>oldValue</em>会被替换成<code>template</code>里的内容，但是我们有时候希望保留<em>oldValue</em>，所以把<code>transclude</code>设为<code>true</code>，这个时候angular就知道要把<em>oldValue</em>保存下来。但是保留下来得有地方放，这个时候在<code>template</code>里面加个<code>ng-transclude</code>指令，就可以把<em>oldValue</em>放进去。</p>
+<p><code>template</code>可以换成<code>templateUrl</code>，后面接的是其他的html文件的地址。</p>
+<p><code>link</code>函数可以操作DOM、绑定事件、绑定作用域。</p>
+<p>最终代码执行完后会得到(以<code>&lt;hello-world&gt;oldValue&lt;/hello-world&gt;</code>的结果为例)：</p>
+<pre><code>&lt;div&gt;
+    newValue
+    &lt;span ng-transclude=&quot;&quot;&gt;&lt;/span&gt;
+    &lt;div&gt;oldValue&lt;/div&gt;
+&lt;/div&gt;
+</code></pre><h3 id="自定义指令的controller和controllAs"><a href="#自定义指令的controller和controllAs" class="headerlink" title="自定义指令的controller和controllAs"></a>自定义指令的controller和controllAs</h3><p>还是上面的代码，将JS部分改为：</p>
+<pre><code> var myApp = angular.module(&quot;myApp&quot;, []);
+ myApp.directive(&quot;helloWorld&quot;, [function () {
+     return {
+         restrict: &apos;ECMA&apos;,
+         template: &quot;&lt;div&gt;newValue&lt;span ng-transclude&gt;&lt;/span&gt;&lt;/div&gt;&quot;,
+         replace: true,
+         transclude: true,
+         controller:function($scope){
+             console.log($scope);
+         },
+         link: function () {
+             //在这里可以操作DOM、给元素绑定事件
+         }
+     }
+}]);
+myApp.controller(&apos;myController&apos;, [&apos;$scope&apos;, function ($scope) {
+    console.log($scope);
+}]);
+</code></pre><p>这样在控制台输出的两个<code>$scope</code>实际上是同一个<code>$scope</code>。上面那个<code>controller</code>写在那里，其他指令可以通过<code>require</code>属性获得这个<code>controller</code>里面的东西，实现多个指令通过依赖注入进行通信。</p>
+<h3 id="require"><a href="#require" class="headerlink" title="require"></a>require</h3><p><code>require</code>可以将其他指令传递给自己，有三个用法：</p>
+<pre><code>1. 通过驼峰法(directiveName)的命名指定了控制器应该带有哪一条指令，默认从同一个元素上的指令找
+2. ^directiveName，在父级查找
+3. ?directiveName，指令可选，找不到不要抛出异常
+</code></pre><p>现在，上面的代码改成了：</p>
+<pre><code> myApp.directive(&quot;helloWorld&quot;, [function () {
+ return {
+     restrict: &apos;ECMA&apos;,
+     template: &quot;&lt;div&gt;newValue&lt;span ng-transclude&gt;&lt;/span&gt;&lt;btn&gt;&lt;/btn&gt;&lt;/div&gt;&quot;,
+     replace: true,
+     transclude: true,
+     controller:function($scope){
+         this.fun=function(){
+             alert(&quot;s&quot;);
+         }
+     },
+     controllerAs:&quot;test&quot;,
+     link: function (scope,element,attr,test) {
+         element.on(&quot;click&quot;,test.fun);
+     }
+ }
+}]);
+myApp.directive(&apos;btn&apos;, [function () {
+    return {
+        restrict: &apos;E&apos;,
+        require:&quot;^helloWorld&quot;,
+        replace:true,
+        template:&quot;&lt;button&gt;点我&lt;/button&gt;&quot;,
+        link: function (scope, element, attrs,test) {
+            element.on(&quot;click&quot;,test.fun);
+        }
+    };
+}]);
+</code></pre><p>点击按钮会发现弹出两次a。那是因为在<code>helloWorld</code>指令里的<code>link</code>函数调用了一次<code>this.fun</code>下面的<code>btn</code>也调用了一次。如果点击文字就只会弹出一次。</p>
+<p>这里的<code>require</code>用了<code>^</code>是因为<code>helloWorld</code>是<code>btn</code>的父级。</p>
+<h3 id="scope"><a href="#scope" class="headerlink" title="scope"></a>scope</h3><h4 id="scope-true"><a href="#scope-true" class="headerlink" title="scope:true"></a>scope:true</h4><p>在上面说了自定义指令里的<code>controller</code>和下面的<code>myController</code>是同一个控制器。但是当我在自定义指令里(<code>helloWorld</code>指令)加一句<code>scope:true</code>时，这两个控制器就有不同的作用域了：</p>
+<pre><code>myApp.directive(&quot;helloWorld&quot;, [function () {
+     return {
+         restrict: &apos;ECMA&apos;,
+         template: &quot;&lt;div&gt;newValue&lt;span ng-transclude&gt;&lt;/span&gt;&lt;btn&gt;&lt;/btn&gt;&lt;/div&gt;&quot;,
+         replace: true,
+         scope:true,
+         transclude: true,
+         controller:function($scope){
+             console.log($scope);
+             this.fun=function(){
+                 alert(&quot;s&quot;);
+             }
+         },
+         controllerAs:&quot;test&quot;
+     }
+}]);
+</code></pre><p>这时，控制台输出的两个<code>scope</code>，展开来看会发现它们的<em>id</em>不一样，<em>id</em>小的那个是<em>id</em>大的父作用域，子作用域可以继承父作用域里的属性，父作用域读不到子作用域里的属性。</p>
+<h4 id="scope-1"><a href="#scope-1" class="headerlink" title="scope:{}"></a>scope:{}</h4><p>当<code>scope:{}</code>会创建一个独立作用域，有父元素，但是继承不到父元素的属性。</p>
+<p>这个对象有三个参数：</p>
+<pre><code>1 .&amp;:把父作用域包装成一个函数，从而以函数的方式读写父作用域的属性
+2 .=:作用域的属性与父作用域的属性双向绑定
+3 .@：只能读取父作用域里的值
+</code></pre><p>HTML：</p>
+<pre><code>&lt;div ng-controller=&quot;myController&quot;&gt;
+    &lt;div hello-world a-data=&quot;data&quot; b-data=&quot;data&quot; data=&quot;{{data}}&quot;&gt;oldValue&lt;/div&gt;
+    {{data}}
+&lt;/div&gt;
+</code></pre><p>JS：</p>
+<pre><code> myApp.directive(&quot;helloWorld&quot;, [function () {
+     return {
+         restrict: &apos;ECMA&apos;,
+         template: &quot;&lt;div&gt;newValue&lt;span ng-transclude&gt;&lt;/span&gt;&lt;btn&gt;&lt;/btn&gt;&lt;/div&gt;&quot;,
+         replace: true,
+         scope:{
+             a:&quot;&amp;aData&quot;,
+             b:&quot;=bData&quot;,
+             data:&quot;@&quot;
+         },
+         transclude: true,
+         controller:function($scope){
+             console.log($scope.a());
+             console.log($scope.b);
+             console.log($scope.data);
+             this.fun=function(){
+                 $scope.$apply(function(){
+                    $scope.b=&quot;aaaa&quot;; 
+                 });
+             }
+         },
+         controllerAs:&quot;test&quot;
+     }
+}]);
+</code></pre><p>在html中我加了三个属性分别为：<code>a-data</code>，<code>b-data</code>，<code>data</code>分别对应着JS中的<code>a</code>，<code>b</code>，<code>data</code>。第三个是简写形式，如果名字和属性名相同，则后面的名字可以不用写。</p>
+<p>当按下按钮会发现页面上的<em>data</em>变为<em>aaaa</em>这就说明<code>b</code>是双向绑定的</p>
+<p><strong>tips:</strong><code>@</code>不能读到对象；使用<code>@</code>时html标签里的属性值需要用双花括号括起来。</p>
+<p><strong>小补充：</strong><code>priority</code>是用来设置指令的权值，也就是指令执行的顺序。<code>terminal</code>设置是否以当前设置的<code>priority</code>为界限，如果小于设置的<code>priority</code>就不执行。</p>
+<p>就到这里，打完收工！</p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/blog/2016/10/11/angular学习笔记/" class="archive-article-date">
+  	<time datetime="2016-10-11T00:26:23.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-11</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/angular/">angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/基础/">基础</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/blog/2016/10/14/angular学习笔记-2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          angular学习笔记(2)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2016/08/14/初尝vue/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">初尝vue</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+	    <a class="jiathis_button_twitter"></a>
+	    <a class="jiathis_button_plus"></a> 
+	    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="angular学习笔记" data-title="angular学习笔记(1)" data-url="https://github.com/JayZangwill/blog/blog/2016/10/11/angular学习笔记/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"zj123"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 Jay Zangwill
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/blog/",
+		innerArchive: false
+	}
+</script>
+
+<script src="/blog/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/blog/tags/angular/" style="font-size: 15px;">angular</a> <a href="/blog/tags/css/" style="font-size: 10px;">css</a> <a href="/blog/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blog/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/blog/tags/sass/" style="font-size: 10px;">sass</a> <a href="/blog/tags/vue/" style="font-size: 10px;">vue</a> <a href="/blog/tags/基础/" style="font-size: 20px;">基础</a> <a href="/blog/tags/定位/" style="font-size: 10px;">定位</a> <a href="/blog/tags/心情/" style="font-size: 10px;">心情</a> <a href="/blog/tags/盒模型/" style="font-size: 10px;">盒模型</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">点这里&lt;a href=&quot;http://jayzangwill.github.io/home#about&quot;&gt;关于我</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
