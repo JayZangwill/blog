@@ -6,6 +6,8 @@ tags: [基础,javascript]
 
 ## 前言
 
+[知乎](https://zhuanlan.zhihu.com/p/34123800)
+
 趁着目前手头上没啥事，赶紧写篇文章，emm...。
 
 红宝书不愧是红宝书，每看一次都会有新的收获，呃，废话不多说，直接进入正题吧。
@@ -170,7 +172,7 @@ son2.name //b
 这种继承方式得需要一个原始对象作为参考，这个方式的主要目的是与另一个对象保持类似。
 在es5中新增了一个Object.create()方法来实现原型式继承，[传送门](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/create)。
 
-###寄生式继承
+### 寄生式继承
 
 寄生式继承是原型式继承的增强版：
 ```javascript
@@ -184,7 +186,7 @@ function createObj(obj) {
 
 这个方法与借用构造函数方法有个共同的缺点，就是方法没法复用。
 
-###寄生组合式继承
+### 寄生组合式继承
 
 ```javascript
 function createObj(obj){
@@ -205,7 +207,7 @@ Parent.prototype.getChild= function(){
     return this.child;
 }
 function Son(name) {
-    this.name = name;
+    Parent.call(this,name);
     this.friend = [2];
 }
 
@@ -213,5 +215,53 @@ inherirPrototype(Parent,Son);
 
 Son.prototype.getFriend = function(){
     return this.friend;
+}
+var son1 = new Son('Jay');
+son1.child.push(2);
+son1.getChild() //[1,2];
+son2=new Son('Zangwill');
+son2.child.push(3);
+son2.getChild() //[1,3]
+son2.getFriend() //[2]
+```
+
+可以看到上面代码只调用了一次`Parent`没有生成多余的属性，同时还解决了使用原型方法时Son不能向Parent传值的问题，也没有属性引用的问题。
+
+寄生组合式继承的大体思路是，通过借用构造函数模式来继承属性，通过原型链来继承方法。通过原型链继承方法无非就是想要得到父类的`prototype`对象，所以我们得想办法来拿到这个副本。而`createObj`函数就是干这事的。
+
+可能有人会问：`var prototype = createObj(parent.prototype);`这句代码直接改成`var prototype = parent.prototype`不行吗？
+
+答案是：肯定不行，要是这么改，要想在`Son.prototype`上加东西也会间接加到`Parent.prototype`上。
+
+不过，在es5中，可以把`var prototype = createObj(parent.prototype);`换成`var prototype = Object.create(parent.prototype);`
+
+它们之间的关系如下：
+
+`实例(也就是son1和son2).__proto__ => Son.prototype => 中间函数的实例(也就是F).__proto__ => 中间函数.prototype => Parent.prototype`
+
+### es6中的继承
+
+在es6中，引入了`class`，这相当于是一个语法糖，这里我就直接上代码不展开说了，想要了解更多的话进入[传送门](http://es6.ruanyifeng.com/#docs/class)。
+
+```javascript
+class Parent {
+    constructor(name) {
+        this.name = name;
+    }
+    getName(){
+        console.log(this.name);
+    }
+}
+class Son extends Parent {
+    constructor(name,age) {
+        super(name);
+        this.age = age;
+    }
+    getAge(){
+        console.log(this.age);
+    }
+    let son = new Son('Jay', 18);
+    son.getAge() //18
+    son.getName(); //Jay
 }
 ```
