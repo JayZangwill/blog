@@ -1,10 +1,8 @@
 ---
-title: sogou_life
+title: 搜狗实习总结
 date: 2018-03-19 22:02:27
 tags: [心情,基础]
 ---
-
-## 搜狗实习总结
 
 转眼间，在搜狗实习已经快一年了，在这得确收获颇丰，所以得总结一下。
 
@@ -137,3 +135,5 @@ color:orange\9\0;ie9、10
 5. filter: grayscale();
 
 一个能使元素变灰的属性，一般用于图片上，使图片变灰。[更多filter的操作](https://developer.mozilla.org/en-US/docs/Web/CSS/filter)
+
+...其他的等我想起再加吧
