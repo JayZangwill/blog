@@ -1,6 +1,6 @@
 ---
 title: 分享个人前端学习路线及面试经验
-date: 2018-04-30 17:05:47
+date: 2018-05-01 17:05:47
 tags: [基础, javascript, html, css, 面试]
 ---
 
@@ -193,6 +193,9 @@ tcp与udp区别。
 11. ajax的过程，以及状态0~4分别发生了什么（有的面试官会让你手写ajax）。
 12. es6新加的新特性。
 13. Promise的三个状态，以及介绍一下async函数。
+14. js事件的冒泡、捕获，及它们的区别，事件的三个过程。
+15. 浏览器的缓存机制（强制缓存cache-control、协商缓存if-modified，if-modified-since，e-tag了解一下）。
+16. cooike与session与localStorage、sessionStorage区别，以及localStorage和sessionStorage区别。
 
 #### vue部分（因为我简历上写了会vue）
 
@@ -200,3 +203,7 @@ tcp与udp区别。
 2. vue的生命周期，这里推荐一下大漠老师的[这篇文章](https://mp.weixin.qq.com/s/JsVx4DwhPwcP8jU0uYHr-g)还有掘金上的[这篇文章](https://juejin.im/post/5ad10800f265da23826e681e)
 3. vue组件的数据传递（包括父->子、子->父，兄弟间，非兄弟）
 4. 前端路由的实现，这里推荐[这篇文章](https://juejin.im/post/5ac61da66fb9a028c71eae1b)
+
+## 结语
+
+本文写了前端的学习方向，还有前端的面试的重点，仅针对实习和应届的同学。知识点有漏的话会在后期补上。大家有什么想法可以在底下留言。
