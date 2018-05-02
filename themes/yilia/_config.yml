@@ -51,6 +51,7 @@ share_addthis: false
 duoshuo: false
 #若使用disqus，请在博客config文件中填写disqus_shortname，并关闭多说评论
 changyan_appid: cytASohTI
+changyan_conf: prod_4a8ed26681d02bdc291288b15f5256de
 
 # 如不需要，将该项置为false
 # 比如

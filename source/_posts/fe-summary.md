@@ -4,6 +4,13 @@ date: 2018-05-01 17:05:47
 tags: [基础, javascript, html, css, 面试]
 ---
 
+## 前言
+
+[个人主页](http://www.jayzangwill.cn/)
+[原文链接](https://jayzangwill.github.io/blog/2018/05/01/fe-summary/#more)
+[掘金](https://juejin.im/post/5ae980c9f265da0b767d485f)
+[知乎](https://zhuanlan.zhihu.com/p/36336162)&[知乎专栏](https://zhuanlan.zhihu.com/jayzangwill)
+
 本人从大二上学期到现在学习前端已将近有3年时间了，最近利用毕业论文写完的一些空余时间写一下这篇文章，用于分享一些**个人**的前端学习经验，以及一些面试经验，不一定适合每个人，不喜勿喷，同时欢迎大家提出建议。
 
 <!-- more-->
