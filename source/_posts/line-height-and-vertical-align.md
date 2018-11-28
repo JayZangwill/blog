@@ -4,6 +4,10 @@ date: 2018-11-24 19:56:20
 tags: [基础,css]
 ---
 
+## 前言
+
+[原文](https://jayzangwill.github.io/blog/2018/11/24/line-height-and-vertical-align/) && [个人主页](https://www.jayzangwill.cn)
+
 由于在工作过程中经常遇到行内元素错位的问题，所以决定研究一下line-height和vertical-align，研究完后发现的确还有一些比较细节性的东西自己好不知道，这次打算和大家分享一下我自己的一些收获。
 
 <!-- more -->
@@ -90,7 +94,7 @@ The baseline of an 'inline-block' is the baseline of its last line box in the no
 
 结果:
 
-![inline_box](/blog/img/lineHeight/inline_box.jpg)
+![inline_box](/blog/img/lineHeight/inline_box.png)
 
 首先根据上面那句话：“`inline-block`的基线是正常流程中其最后一个线框的基线”，他们的`baseline`是最后一个`.wrap`的`baseline`，即`字母x`的底部；然后根据第二句话：“除非它里面没有在流内（in-flow）或者其`overflow`属性值不为`visible`，在这种情况下，基线是`margin-bottom`边缘”；因为第一个`.wrap`内部没有其他`inline`元素和第二个的`overflow`值为`hidden`，所以他们两个的基线为`margin-bottom`的边缘，在这里因为没有设置`margin-bottom`，所以他们的基线在下面蓝色背景的边缘，这两个`.wrap`因为规范里的第二句话导致基线与第三个`.wrap`不一致，从而出现了如图所示的错位情况。
 
