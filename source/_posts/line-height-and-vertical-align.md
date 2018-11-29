@@ -35,6 +35,8 @@ tags: [基础,css]
 
 **注意：**没有基线的元素，使用外边距的下边缘替代，且vertical-align只对行内元素、表格单元格元素生效：**不能用它垂直对齐块级元素**。
 
+[疯狂戳我试试属性](https://www.jayzangwill.cn/demo/verticalAlign_1.html)
+
 ### line-height
 
 [w3c规范](https://www.w3.org/TR/CSS2/visudet.html#propdef-line-height)
@@ -198,6 +200,8 @@ emmm，这位老中医其实说对了一半吧。之前我也是这么认为的�
 
 ![gay](/blog/img/lineHeight/gay_2.png)
 
+[疯狂戳我看个究竟](https://www.jayzangwill.cn/demo/verticalAlign_2.html)
+
 可以发现貌似是`x`的高度把这个空白撑出来的。
 
 如果借用之前提到的知识来解释的话还是很容易解释得通的。
@@ -211,7 +215,7 @@ emmm，这位老中医其实说对了一半吧。之前我也是这么认为的�
 方法三：字体有行高？那我就给你个小点的行高，不让你往下顶🤣例如：`line-height:0`
 方法四：如果布局允许可以将`img`的`display`设置为`block`或者它的父元素设置`display:flex`
 
-##总结
+## 总结
 
 如果平时开发过程中发现有元素莫名其妙的不对齐，那十有八九就是`vertical-align`和`line-height`搞的鬼，大家可以针对这两个属性下手😁，破坏他们的基友情。
 
