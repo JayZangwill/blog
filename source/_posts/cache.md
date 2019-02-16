@@ -73,9 +73,70 @@ tags: [基础,浏览器]
 
 存在硬盘中的缓存，当重新打开页面后，会从硬盘中获取缓存。它与内存缓存最大的区别是：硬盘缓存不会在页面关闭后被清除，当页面关闭后再进入页面读取的就是硬盘缓存。
 
+#### Push Cache
+
+“推送缓存”是针对HTTP/2标准下的推送资源设定的。推送缓存是session级别的，如果用户的session结束则资源被释放；即使URL相同但处于不同的session中也不会发生匹配。推送缓存的存储时间较短，在Chrome浏览器中只有5分钟左右，同时它也并非严格执行HTTP头中的缓存指令。更多详情可参阅[HTTP/2 push is tougher than I thought](https://jakearchibald.com/2017/h2-push-tougher-than-i-thought/)
+
+1. 几乎所有的资源都能被推送，并且能够被缓存。测试过程是作者在推送资源之后尝试用fetch()、XMLHttpRequest、link、script、iframe获取推送的资源。Edge和Safari浏览器支持相对比较差
+2. no-cache和no-store资源也能被推送
+3. Push Cache是最后一道缓存机制（之前会经过Service Worker、Memory Cache、HTTP Cache）
+4. 如果连接被关闭则Push Cache被释放
+5. 多个页面可以使用同一个HTTP/2的连接，也就可以使用同一个Push Cache。这主要还是依赖浏览器的实现而定，出于对性能的考虑有的浏览器会对相同域名但不同的tab标签使用同一个HTTP连接。
+6. 一旦Push Cache中的资源被使用即被移除
+7. 如果Push Cache或者HTTP Cache已经存在被推送的资源，则有可能浏览器拒绝推送
+8. 你可以为其他域名推送资源
+
 #### Service Worker
 
-#### 什么时候浏览器从内存中拿缓存，什么时候从硬盘中拿数据
+Service Worker 可以使你的应用先访问本地缓存资源，所以在离线状态时，在没有通过网络接收到更多的数据前，仍可以提供基本的功能。
+
+要让一个service worker在你的网站上生效，你需要先在你的网页中注册它。注册一个service worker之后，浏览器会在后台默默启动一个service worker的安装过程。在安装过程中，浏览器会加载并缓存一些静态资源。如果所有的文件被缓存成功，service worker就安装成功了。如果有任何文件加载或缓存失败，那么安装过程就会失败，service worker就不能被激活（也即没能安装成功）。如果发生这样的问题，别担心，它会在下次再尝试安装。
+当安装完成后，service worker的下一步是激活，在这一阶段，你还可以升级一个service worker的版本，具体内容我们会在后面讲到。
+在激活之后，service worker将接管所有在自己管辖域范围内的页面，但是如果一个页面是刚刚注册了service worker，那么它这一次不会被接管，到下一次加载页面的时候，service worker才会生效。
+当service worker接管了页面之后，它可能有两种状态：要么被终止以节省内存，要么会处理fetch和message事件，这两个事件分别产生于一个网络请求出现或者页面上发送了一个消息。
+
+如下代码是Service Worker的注册：
+
+```javascript
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js', { scope: '/' }).then(function(reg) {
+    // scope为目标缓存的资源路径 默认是/
+    console.log('Registration succeeded. Scope is ' + reg.scope);
+  }).catch(function(error) {
+    console.log('Registration failed with ' + error);
+  });
+}
+```
+以下是sw.js的代码：
+
+```javascript
+const version = '2';
+
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(`static-${version}`)
+      .then(cache => cache.addAll([
+        new Request('/styles.css', { cache: 'no-cache' }), // 因为sw拿到的资源缓存也是从http缓存中拿的，所以要确保拿到的资源是没有过期的
+        new Request('/script.js', { cache: 'no-cache' })
+      ]))
+  );
+});
+
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => response || fetch(event.request))
+  );
+});
+```
+
+首先你要明白的前提：
+1. sw是在https环境或者localhost环境下才能运行的。
+2. 网络请求首先到达的是SW脚本中，如果未命中再转发给HTTP缓存。
+
+这段代码的意思是，在SW的install阶段我们将script.js和styles.css放入缓存中；而在请求发起的fetch阶段，通过资源的URL去缓存内查找匹配，成功后立刻返回，否则走正常的网络请求流程。
+
+#### 命中强制缓存时，该从哪拿缓存
 
 对于这个问题，网上有不同的解释，同时不同的浏览器也有不同的缓存机制，所以这个问题我决定做个试验，以下是我的实验结果（截图均为chrome浏览器）：
 
@@ -159,3 +220,4 @@ CDN即Content Delivery network，内容分发网络。CDN可以理解为一个�
 [浏览器缓存和CDN缓存基本介绍](https://blog.csdn.net/longaiyunlay/article/details/78390226)
 [CDN缓存策略](https://www.cnblogs.com/quincyWang/p/6911664.html)
 [设计一个无懈可击的浏览器缓存方案：关于思路，细节，ServiceWorker，以及HTTP/2](https://zhuanlan.zhihu.com/p/28113197)
+[Service Worker初体验](https://blog.csdn.net/xiangzhihong8/article/details/55225829)
