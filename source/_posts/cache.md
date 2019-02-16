@@ -7,6 +7,7 @@ tags: [基础,浏览器]
 ## 前言
 
 [原文](https://jayzangwill.github.io/blog/2018/11/24/line-height-and-vertical-align/) && [个人主页](https://www.jayzangwill.cn)
+
 [知乎](https://zhuanlan.zhihu.com/p/51189193) && [知乎专栏](https://zhuanlan.zhihu.com/jayzangwill)
 
 ## 背景
@@ -55,16 +56,44 @@ tags: [基础,浏览器]
 
 ![步骤图](/blog/img/cache/step.png)
 
-#### 缓存的位置
-
-关于缓存位置可以查看[这篇文章](https://www.jianshu.com/p/54cc04190252)
+### 强制缓存的几个位置
 
 总的来说就分为四个位置：
 
-1. [Service Worker](https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API/Using_Service_Workers)
-2. Memory Cache
-3. Disk Cache
-4. Push Cache
+1. Memory Cache
+2. Disk Cache
+3. Push Cache
+4. [Service Worker](https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API/Using_Service_Workers)
+
+#### Memory Cache
+
+存在内存中的缓存，一般是页面刷新后，浏览器从内存中获取缓存，从内存中获取缓存的速度要比从硬盘中获取的速度要快，因此在刷新的时候会从内存中获取缓存比较方便。当页面关闭后，内存就会释放。
+
+#### Disk Cache
+
+存在硬盘中的缓存，当重新打开页面后，会从硬盘中获取缓存。它与内存缓存最大的区别是：硬盘缓存不会在页面关闭后被清除，当页面关闭后再进入页面读取的就是硬盘缓存。
+
+#### Service Worker
+
+#### 什么时候浏览器从内存中拿缓存，什么时候从硬盘中拿数据
+
+对于这个问题，网上有不同的解释，同时不同的浏览器也有不同的缓存机制，所以这个问题我决定做个试验，以下是我的实验结果（截图均为chrome浏览器）：
+
+没有Service Worker时：
+![没有Service Worker](/blog/img/cache/weizhi_1.gif)
+
+有Service Worker时：
+![有Service Worker](/blog/img/cache/weizhi_2.gif)
+
+从图中可以看到，当没有使用Service Worker时，浏览器有的资源从memory中拿，有的资源从disk中拿。同时，相同的资源有可能是从memory中拿，有的可能是从disk中拿。加上第一次进入页面时都是从硬盘中拿取的缓存，因此可以判断当当前内存足够大时从内存中拿，反之从硬盘中拿。
+
+再看图二，所有资源几乎都是从Service Worker中拿的，只有base64图片是从内存中拿的。因此，可以总结：
+
+1. 当有Service Worker时，浏览器（chrome）会从Service Worker拿取数据
+2. 浏览器（chrome）首先会从内存中获取缓存，获取多少由当前内存和内存空间决定
+3. 浏览器（chrome）拿取缓存的顺序：Service Worker > memory cache > disk cache
+4. base64图片总是从memory cache中获取缓存
+5. 其他：在chrome中状态码为200（from disk cache和from memory cache）的文件在edge和firefox中都是304（感兴趣的同学可以试一试）
 
 ### 小结
 
