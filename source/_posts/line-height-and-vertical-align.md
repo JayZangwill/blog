@@ -7,7 +7,7 @@ tags: [基础,css]
 ## 前言
 
 [原文](https://jayzangwill.github.io/blog/2018/11/24/line-height-and-vertical-align/) && [个人主页](https://www.jayzangwill.cn)
-[知乎](https://zhuanlan.zhihu.com/p/51189193) && [知乎专栏](https://zhuanlan.zhihu.com/jayzangwill)
+[知乎](https://zhuanlan.zhihu.com/p/56943873) && [知乎专栏](https://zhuanlan.zhihu.com/jayzangwill)
 
 由于在工作过程中经常遇到行内元素错位的问题，所以决定研究一下line-height和vertical-align，研究完后发现的确还有一些比较细节性的东西自己好不知道，这次打算和大家分享一下我自己的一些收获。
 

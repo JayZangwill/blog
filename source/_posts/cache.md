@@ -136,6 +136,8 @@ CDN即Content Delivery network，内容分发网络。CDN可以理解为一个�
 
 “推送缓存”是针对HTTP/2标准下的推送资源设定的。推送缓存是session级别的，如果用户的session结束则资源被释放；即使URL相同但处于不同的session中也不会发生匹配。推送缓存的存储时间较短，在Chrome浏览器中只有5分钟左右，同时它也并非严格执行HTTP头中的缓存指令。更多详情可参阅[HTTP/2 push is tougher than I thought](https://jakearchibald.com/2017/h2-push-tougher-than-i-thought/)
 
+以下我列出几点：
+
 1. 几乎所有的资源都能被推送，并且能够被缓存。测试过程是作者在推送资源之后尝试用fetch()、XMLHttpRequest、link、script、iframe获取推送的资源。Edge和Safari浏览器支持相对比较差
 2. no-cache和no-store资源也能被推送
 3. Push Cache是最后一道缓存机制（之前会经过Service Worker、Memory Cache、HTTP Cache）
@@ -155,79 +157,57 @@ CDN即Content Delivery network，内容分发网络。CDN可以理解为一个�
 
 ![sw生命周期](/blog/img/cache/sw-lifecycle.png)
 
+总的来说Service Worker就类似于一个中间人，所有浏览器发出的请求都会被Service Worker拦截到，并被Service Worker处理，从而决定资源都是从哪获取。
+
 另外还需要注意的是Service Worker依赖https或者localhost环境
 
-若要安装 Service Worker，您需要通过在页面中对其进行注册来启动安装：
+所有被Service Worker缓存的资源都能在控制台的Application下的Cache Tab里的Cache Storage看到：
+
+![application](/blog/img/cache/application.png)
+
+以下代码展示了一个Service Worker的使用示例（如果不了解sw的同学建议阅读[链接](https://developers.google.com/web/fundamentals/primers/service-workers/)中的代码示例再继续）
 
 ```javascript
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js', { scope: '/' }).then(function(reg) {
-    // scope为目标缓存的资源路径 默认是/
-    console.log('Registration succeeded. Scope is ' + reg.scope);
-  }).catch(function(error) {
-    console.log('Registration failed with ' + error);
-  });
-}
-```
-在启动安装时会触发`install`回调，在`install`回调的内部，我们需要执行以下步骤：
+navigator.serviceWorker && navigator.serviceWorker.register('/sw.js', { scope: '/' })
 
-1. 打开缓存。
-2. 缓存文件。
-3. 确认所有需要的资产是否已缓存。
-
-以下是sw.js里的代码
-
-```javascript
-const version = '1';
-
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(`static-${version}`)
-      .then(cache => cache.addAll([
-        new Request('/styles.css', { cache: 'no-cache' }), // 因为sw拿到的资源缓存也是从http缓存中拿的，所以要确保拿到的资源是没有过期的
-        new Request('/script.js', { cache: 'no-cache' })
-      ]))
-  );
-});
-```
-
-需要注意的是其中有任意一个文件下载失败都会导致service worker安装失败
-
-在安装 Service Worker 且用户转至其他页面或刷新当前页面后，Service Worker 将开始接收`fetch`事件：
-
-```javascript
-self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    caches.match(event.request)
-      .then(function(response) {
-        if (response) {
-          return response;
-        }
-
-        var fetchRequest = event.request.clone();
-
-        return fetch(fetchRequest).then(
-          function(response) {
-            if(!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
+// 以下是sw.js中的代码
+var CACHE_KEY = 'v1.' + (new Date().getMonth()) + '.0';
+var IS_ENV_TEST = /^(localhost)|(test-)/.test(self.location.host);
+var CACHE_TYPES = /(\/index(#\/)?)|(\.(png|jpe?g|gif|webp|svg|mp3|wav|aac|mp4|mov|m4v|mkv|wma|wmv|rm|3gp|rmvb|avi|flv|js|css))$/;
+self.addEventListener('install', function(event) {
+    self.skipWaiting();
+    event.waitUntil(caches.keys().then(function(cacheNames) {
+        return Promise.all(cacheNames.map(function(cacheName) {
+            if (cacheName !== CACHE_KEY) {
+                return caches.delete(cacheName)
             }
-
-            var responseToCache = response.clone();
-            // 如果希望连续缓存新请求，可以通过处理 fetch 请求的响应并将其添加到缓存来实现
-            caches.open(`static-${version}`)
-              .then(function(cache) {
-                cache.put(event.request, responseToCache);
-              });
-
-            return response;
-          }
-        );
-      })
-    );
+        }))
+    }))
 });
-```
 
-如果发现匹配的响应，则返回缓存的值，否则，将调用 fetch 以发出网络请求，并将从网络检索到的任何数据作为结果返回。
+self.addEventListener('fetch', function(event) {
+    var method = event.request.method;
+    var url = event.request.url;
+    if (method !== 'GET' || !CACHE_TYPES.test(url) || /sw\.js$/.test(url)) {
+        return
+    }
+    event.respondWith(caches.match(event.request).then(function(cacheRes) {
+        if (!navigator.onLine) {
+            return cacheRes
+        }
+        if (!cacheRes || /\/index(#\/)?$/.test(url) || (IS_ENV_TEST && /\.(js|css)$/.test(url))) {
+            return fetch(event.request).then(function(fetchResponse) {
+                caches.open(CACHE_KEY).then(function(cache) {
+                    cache.put(event.request, fetchResponse)
+                });
+                return fetchResponse.clone()
+            })
+        }
+        return cacheRes
+    }))
+});
+
+```
 
 #### 命中强制缓存时，该从哪拿缓存
 
@@ -241,9 +221,9 @@ self.addEventListener('fetch', function(event) {
 
 从图中可以看到，当没有使用Service Worker时，浏览器有的资源从memory中拿，有的资源从disk中拿。同时，相同的资源有可能是从memory中拿，有的可能是从disk中拿。加上第一次进入页面时都是从硬盘中拿取的缓存，因此可以判断当当前内存足够大时从内存中拿，反之从硬盘中拿。
 
-再看图二，所有资源几乎都是从Service Worker中拿的，只有base64图片是从内存中拿的。因此，可以总结：
+再看图二，所有资源几乎都是从Service Worker中拿的。因此，可以总结：
 
-1. 当有Service Worker时，浏览器（chrome）会从Service Worker拿取数据
+1. 当有Service Worker时，浏览器（chrome）会从Service Worker拿取缓存
 2. 浏览器（chrome）首先会从内存中获取缓存，获取多少由当前内存和内存空间决定
 3. 浏览器（chrome）拿取缓存的顺序：Service Worker > memory cache > disk cache
 4. 其他：在chrome中状态码为200（from disk cache和from memory cache）的文件在edge和firefox中都是304（感兴趣的同学可以试一试）
