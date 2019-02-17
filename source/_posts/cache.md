@@ -153,10 +153,6 @@ CDN即Content Delivery network，内容分发网络。CDN可以理解为一个�
 
 ![service介绍](/blog/img/cache/servicework.png)
 
-以下是 Service Worker 初始安装时的简化生命周期。
-
-![sw生命周期](/blog/img/cache/sw-lifecycle.png)
-
 总的来说Service Worker就类似于一个中间人，所有浏览器发出的请求都会被Service Worker拦截到，并被Service Worker处理，从而决定资源都是从哪获取。
 
 另外还需要注意的是Service Worker依赖https或者localhost环境
