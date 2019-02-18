@@ -6,9 +6,9 @@ tags: [基础,浏览器]
 
 ## 前言
 
-[原文](https://jayzangwill.github.io/blog/2018/11/24/line-height-and-vertical-align/) && [个人主页](https://www.jayzangwill.cn)
+[原文](https://jayzangwill.github.io/blog/2019/02/07/cache/) && [个人主页](https://www.jayzangwill.cn)
 
-[知乎](https://zhuanlan.zhihu.com/p/51189193) && [知乎专栏](https://zhuanlan.zhihu.com/jayzangwill)
+[知乎](https://zhuanlan.zhihu.com/p/56943873) && [知乎专栏](https://zhuanlan.zhihu.com/jayzangwill)
 
 ## 背景
 
