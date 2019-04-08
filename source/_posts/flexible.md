@@ -8,6 +8,8 @@ tags: [移动端,适配]
 
 [原文](https://jayzangwill.github.io/blog/2019/04/02/flexible/) && [个人主页](https://www.jayzangwill.cn)
 
+[知乎](https://zhuanlan.zhihu.com/p/61697375) && [知乎专栏](https://zhuanlan.zhihu.com/jayzangwill)
+
 ## 背景
 
 随着移动端的普及，以及手机尺寸越来越多，这就衍生了众多的适配方案，以下挑一些常见的适配方案进行探讨。
