@@ -54,7 +54,7 @@ css伪代码
 1. `rem`的大小是基于页面根元素的`font-size`。
 2. `rem`的本质是等比缩放。
 
-例如：根元素的`font-size: 16px`则，`1rem`就等于`16px`；根元素的`font-size:32px`则，`1rem`就等于`36px`
+例如：根元素的`font-size: 16px`则，`1rem`就等于`16px`；根元素的`font-size:32px`则，`1rem`就等于`32px`
 
 可以到[这里](https://www.jayzangwill.cn/demo/flexible2.html)来意会一下`rem`的本质是缩放
 
