@@ -14,6 +14,8 @@ tags: [移动端,适配]
 
 本文默认读者已经对视口、物理像素、逻辑像素、css像素等移动端基本概念已经了解了。
 
+<!-- more -->
+
 ## px + viewport适配
 
 这种适配方案原理比较简单：实际上就是通过动态设置`meta`标签的viewport让css中的1px等于设备的1px。
@@ -129,7 +131,7 @@ html.fontSize = clientWidth / 750 * 100
 
 再看到下面那个转换表时我瞬间就不淡定了：
 
-![rpx](/blog/img/flexible/rpx.jpeg)
+![rpx](/blog/img/flexible/rpx.png)
 
 既是根据屏幕宽度自适应的又和上一章讲到的：基于设计图的rem布局的换算结果一样的，那它内部的实现原理其实和基于设计图的rem布局的原理差不多。
 
