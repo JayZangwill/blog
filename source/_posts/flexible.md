@@ -1,14 +1,12 @@
 ---
 title: 移动端适配
 date: 2019-04-02 15:55:55
-tags: tags: [移动端,适配]
+tags: [移动端,适配]
 ---
 
 ## 前言
 
 [原文](https://jayzangwill.github.io/blog/2019/04/02/flexible/) && [个人主页](https://www.jayzangwill.cn)
-
-[知乎](https://zhuanlan.zhihu.com/p/56943873) && [知乎专栏](https://zhuanlan.zhihu.com/jayzangwill)
 
 ## 背景
 
@@ -70,7 +68,7 @@ css伪代码
 
 那么问题来了：设计图一定会是750的，可是市面上机型那么多，屏幕不一定是750啊，怎么办？
 
-[表情](/blog/img/common/biaoqing1.png)
+![表情](/blog/img/common/biaoqing1.png)
 
 前面我说过，**rem的本质是等比缩放**，让大于750或者小于750屏幕的手机等比缩放不就完事了？
 
@@ -82,13 +80,13 @@ html.fontSize = clientWidth / 750
 
 你以为这就完事了？其实事情并没有那么简单。
 
-[表情](/blog/img/common/yaoming.jpeg)
+![表情](/blog/img/common/yaoming.jpeg)
 
 别忘了，平时我们开发都是在chrome下开发的。chrome并不支持`font-size`小于12的字体，那怎么办呢？
 
 还能怎么办，为了方便计算，让`font-size`大于12呗，在以上基础上将结果放大100倍，然后写样式的时候再除以100：
 
-[表情](/blog/img/common/baobao.jpeg)
+![表情](/blog/img/common/baobao.jpg)
 
 js伪代码：
 
@@ -131,7 +129,7 @@ html.fontSize = clientWidth / 750 * 100
 
 再看到下面那个转换表时我瞬间就不淡定了：
 
-[rpx](/blog/img/flexible/rpx.jpeg)
+![rpx](/blog/img/flexible/rpx.jpeg)
 
 既是根据屏幕宽度自适应的又和上一章讲到的：基于设计图的rem布局的换算结果一样的，那它内部的实现原理其实和基于设计图的rem布局的原理差不多。
 
