@@ -102,7 +102,7 @@ html.fontSize = clientWidth / 750 * 100
 
 ```css
 .element {
-    width: 0.1rem; /* 实际到6/7/8上就是20px */
+    width: 0.1rem; /* 实际到6/7/8上就是10px */
 }
 ```
 
