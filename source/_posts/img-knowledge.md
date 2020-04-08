@@ -182,6 +182,19 @@ APNG（Animated Portable Network Graphics）是一个基于PNG（Portable Networ
 
 WebP是由Google最初在2010年发布，目标是减少文件大小。它能同时支持无损压缩和有损压缩。
 
-1. 在无损压缩的情况下，相同质量的 WebP 图片，文件大小要比 PNG 小26%；
-2. 在有损压缩的情况下，具有相同图片精度的 WebP 图片，文件大小要比 JPEG 小 25%~34%；
-3. WebP 图片格式支持图片透明度，一个无损压缩的 WebP 图片，如果要支持透明度只需要 22% 的格外文件大小。
+它几乎集成了以上所有图片的优点，并且能够拥有更高的压缩率，我们可以看以下两张图的体积，一张是压缩后的jpg、一张是webp
+
+jpg
+
+![jpg](/blog/img/img/jpg.jpg)
+
+webp
+
+![webp](/blog/img/img/webp.webp)
+
+可以看到，webp的体积要比jpg的还要小差不多**50%**！
+
+
+悲剧的是，webp支持率有点感人
+
+![webp](/blog/img/img/webp_support.png)
