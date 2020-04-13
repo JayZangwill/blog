@@ -5,45 +5,45 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="https://github.com/JayZangwill/blog">
+  <link rel="dns-prefetch" href="https://jayzangwill.github.io/blog">
   <title>css盒模型与定位 | Jay Zangwill</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="说到css的盒子模型和定位相信大家一定都听说过，因为它们是css中的基础，同时也是难点，这篇文章的作用在于基础知识的扫盲。">
 <meta name="keywords" content="css,基础,盒模型,定位">
 <meta property="og:type" content="article">
 <meta property="og:title" content="css盒模型与定位">
-<meta property="og:url" content="https://github.com/JayZangwill/blog/2016/12/15/CSS box model and location/index.html">
+<meta property="og:url" content="https://jayzangwill.github.io/blog/2016/12/15/CSS box model and location/index.html">
 <meta property="og:site_name" content="Jay Zangwill">
 <meta property="og:description" content="说到css的盒子模型和定位相信大家一定都听说过，因为它们是css中的基础，同时也是难点，这篇文章的作用在于基础知识的扫盲。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://github.com/blog/img/box/box-model.png">
-<meta property="og:image" content="https://github.com/blog/img/box/width.png">
-<meta property="og:image" content="https://github.com/blog/img/box/width-box.png">
-<meta property="og:image" content="https://github.com/blog/img/box/padding.png">
-<meta property="og:image" content="https://github.com/blog/img/box/padding-box.png">
-<meta property="og:image" content="https://github.com/blog/img/box/padding-width.png">
-<meta property="og:image" content="https://github.com/blog/img/box/border.png">
-<meta property="og:image" content="https://github.com/blog/img/box/border-box.png">
-<meta property="og:image" content="https://github.com/blog/img/box/border-width.png">
-<meta property="og:image" content="https://github.com/blog/img/box/blue.png">
-<meta property="og:image" content="https://github.com/blog/img/box/margin.png">
-<meta property="og:image" content="https://github.com/blog/img/box/margin-box.png">
-<meta property="og:image" content="https://github.com/blog/img/box/margin-width.png">
-<meta property="og:image" content="https://github.com/blog/img/box/box-sizing.png">
-<meta property="og:image" content="https://github.com/blog/img/box/static.png">
-<meta property="og:image" content="https://github.com/blog/img/box/relative.png">
-<meta property="og:image" content="https://github.com/blog/img/box/absolute1.png">
-<meta property="og:image" content="https://github.com/blog/img/box/absolute2.png">
-<meta property="og:image" content="https://github.com/blog/img/box/absolute3.png">
-<meta property="og:image" content="https://github.com/blog/img/box/fixed.png">
-<meta property="og:image" content="https://github.com/blog/img/box/scroll.png">
-<meta property="og:image" content="https://github.com/blog/img/box/z-index1.png">
-<meta property="og:image" content="https://github.com/blog/img/box/z-index-box.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/box/box-model.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/box/width.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/box/width-box.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/box/padding.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/box/padding-box.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/box/padding-width.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/box/border.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/box/border-box.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/box/border-width.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/box/blue.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/box/margin.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/box/margin-box.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/box/margin-width.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/box/box-sizing.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/box/static.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/box/relative.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/box/absolute1.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/box/absolute2.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/box/absolute3.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/box/fixed.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/box/scroll.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/box/z-index1.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/box/z-index-box.png">
 <meta property="og:updated_time" content="2020-04-07T03:29:17.928Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css盒模型与定位">
 <meta name="twitter:description" content="说到css的盒子模型和定位相信大家一定都听说过，因为它们是css中的基础，同时也是难点，这篇文章的作用在于基础知识的扫盲。">
-<meta name="twitter:image" content="https://github.com/blog/img/box/box-model.png">
+<meta name="twitter:image" content="https://jayzangwill.github.io/blog/img/box/box-model.png">
   
     <link rel="alternative" href="/atom.xml" title="Jay Zangwill" type="application/atom+xml">
   
@@ -462,7 +462,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://github.com/JayZangwill/blog/2016/12/15/CSS box model and location/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://jayzangwill.github.io/blog/2016/12/15/CSS box model and location/" alt="微信分享二维码">
     </div>
 </div>
 

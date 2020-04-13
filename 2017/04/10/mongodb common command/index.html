@@ -5,14 +5,14 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="https://github.com/JayZangwill/blog">
+  <link rel="dns-prefetch" href="https://jayzangwill.github.io/blog">
   <title>常用的mongodb命令 | Jay Zangwill</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="下面是一些我常用的mongodb命令，供自己备忘">
 <meta name="keywords" content="mongodb">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常用的mongodb命令">
-<meta property="og:url" content="https://github.com/JayZangwill/blog/2017/04/10/mongodb common command/index.html">
+<meta property="og:url" content="https://jayzangwill.github.io/blog/2017/04/10/mongodb common command/index.html">
 <meta property="og:site_name" content="Jay Zangwill">
 <meta property="og:description" content="下面是一些我常用的mongodb命令，供自己备忘">
 <meta property="og:locale" content="zh-CN">
@@ -188,7 +188,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 查找操作</span><br><span class="line">function findDocuments(db, callback, search) &#123;</span><br><span class="line">	search = search || &#123;&#125;;</span><br><span class="line">	</span><br><span class="line">	// Get the documents collection</span><br><span class="line">	let collection = db.collection(&apos;documents&apos;);</span><br><span class="line">	// Find some documents</span><br><span class="line">	collection.find(search).toArray((err, docs) =&gt; &#123;</span><br><span class="line">		assert.equal(err, null);</span><br><span class="line">		callback(docs);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// 更新操作</span><br><span class="line">function updateDocument(db, userinfo, money, callback) &#123;</span><br><span class="line"></span><br><span class="line">	// Get the documents collection</span><br><span class="line">	let collection = db.collection(&apos;documents&apos;);</span><br><span class="line"></span><br><span class="line">	collection.updateOne(&#123;</span><br><span class="line">		idCard: userinfo</span><br><span class="line">	&#125;, &#123;</span><br><span class="line">		$set: &#123;</span><br><span class="line">			money: money</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;, (err, result) =&gt; &#123;</span><br><span class="line">		assert.equal(err, null);</span><br><span class="line">		callback(result);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function deleteDocument(db, userinfo, callback) &#123;</span><br><span class="line">  // Get the documents collection</span><br><span class="line">  let collection = db.collection(&apos;documents&apos;);</span><br><span class="line">  collection.deleteOne(&#123; idCard: userinfo &#125;, (err, result) =&gt; &#123;</span><br><span class="line">    callback(result);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="https://github.com/mongodb/node-mongodb-native">更多node与mongodb交互</a></p>
+<p><a href="https://github.com/mongodb/node-mongodb-native" target="_blank" rel="noopener">更多node与mongodb交互</a></p>
 
       
 
@@ -258,7 +258,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://github.com/JayZangwill/blog/2017/04/10/mongodb common command/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://jayzangwill.github.io/blog/2017/04/10/mongodb common command/" alt="微信分享二维码">
     </div>
 </div>
 

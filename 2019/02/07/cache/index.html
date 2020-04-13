@@ -5,32 +5,32 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="https://github.com/JayZangwill/blog">
+  <link rel="dns-prefetch" href="https://jayzangwill.github.io/blog">
   <title>扒一扒浏览器缓存机制 | Jay Zangwill</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言原文 &amp;amp;&amp;amp; 个人主页 知乎 &amp;amp;&amp;amp; 知乎专栏 背景之所以会写这篇文章，是因为之前在工作中发生的一次微信浏览器莫名缓存的问题。这个问题的源头是因为万恶的微信浏览器将页面的入口文件给缓存起来了（单页面应用），因此，通过写下这篇文章来理一理浏览器的缓存机制。 详细的解决方案可以看这里">
 <meta name="keywords" content="基础,浏览器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="扒一扒浏览器缓存机制">
-<meta property="og:url" content="https://github.com/JayZangwill/blog/2019/02/07/cache/index.html">
+<meta property="og:url" content="https://jayzangwill.github.io/blog/2019/02/07/cache/index.html">
 <meta property="og:site_name" content="Jay Zangwill">
 <meta property="og:description" content="前言原文 &amp;amp;&amp;amp; 个人主页 知乎 &amp;amp;&amp;amp; 知乎专栏 背景之所以会写这篇文章，是因为之前在工作中发生的一次微信浏览器莫名缓存的问题。这个问题的源头是因为万恶的微信浏览器将页面的入口文件给缓存起来了（单页面应用），因此，通过写下这篇文章来理一理浏览器的缓存机制。 详细的解决方案可以看这里">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://github.com/blog/img/cache/header_1.png">
-<meta property="og:image" content="https://github.com/blog/img/cache/code_200.png">
-<meta property="og:image" content="https://github.com/blog/img/cache/step.png">
-<meta property="og:image" content="https://github.com/blog/img/cache/header_2.png">
-<meta property="og:image" content="https://github.com/blog/img/cache/step_2.png">
-<meta property="og:image" content="https://github.com/blog/img/cache/cdn_step.png">
-<meta property="og:image" content="https://github.com/blog/img/cache/servicework.png">
-<meta property="og:image" content="https://github.com/blog/img/cache/application.png">
-<meta property="og:image" content="https://github.com/blog/img/cache/weizhi_1.gif">
-<meta property="og:image" content="https://github.com/blog/img/cache/weizhi_2.gif">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/cache/header_1.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/cache/code_200.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/cache/step.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/cache/header_2.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/cache/step_2.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/cache/cdn_step.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/cache/servicework.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/cache/application.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/cache/weizhi_1.gif">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/cache/weizhi_2.gif">
 <meta property="og:updated_time" content="2020-04-07T03:29:17.934Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="扒一扒浏览器缓存机制">
 <meta name="twitter:description" content="前言原文 &amp;amp;&amp;amp; 个人主页 知乎 &amp;amp;&amp;amp; 知乎专栏 背景之所以会写这篇文章，是因为之前在工作中发生的一次微信浏览器莫名缓存的问题。这个问题的源头是因为万恶的微信浏览器将页面的入口文件给缓存起来了（单页面应用），因此，通过写下这篇文章来理一理浏览器的缓存机制。 详细的解决方案可以看这里">
-<meta name="twitter:image" content="https://github.com/blog/img/cache/header_1.png">
+<meta name="twitter:image" content="https://jayzangwill.github.io/blog/img/cache/header_1.png">
   
     <link rel="alternative" href="/atom.xml" title="Jay Zangwill" type="application/atom+xml">
   
@@ -182,7 +182,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="https://jayzangwill.github.io/blog/2019/02/07/cache/" target="_blank" rel="noopener">原文</a> &amp;&amp; <a href="https://www.jayzangwill.cn" target="_blank" rel="noopener">个人主页</a></p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="https://jayzangwill.github.io/blog/2019/02/07/cache/">原文</a> &amp;&amp; <a href="https://www.jayzangwill.cn" target="_blank" rel="noopener">个人主页</a></p>
 <p><a href="https://zhuanlan.zhihu.com/p/56943873" target="_blank" rel="noopener">知乎</a> &amp;&amp; <a href="https://zhuanlan.zhihu.com/jayzangwill" target="_blank" rel="noopener">知乎专栏</a></p>
 <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>之所以会写这篇文章，是因为之前在工作中发生的一次微信浏览器莫名缓存的问题。这个问题的源头是因为万恶的微信浏览器将页面的入口文件给缓存起来了（单页面应用），因此，通过写下这篇文章来理一理浏览器的缓存机制。</p>
 <p>详细的解决方案可以看<a href="https://www.jianshu.com/p/cce9511c0914" target="_blank" rel="noopener">这里</a></p>
@@ -348,7 +348,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://github.com/JayZangwill/blog/2019/02/07/cache/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://jayzangwill.github.io/blog/2019/02/07/cache/" alt="微信分享二维码">
     </div>
 </div>
 

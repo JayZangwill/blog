@@ -5,28 +5,28 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="https://github.com/JayZangwill/blog">
+  <link rel="dns-prefetch" href="https://jayzangwill.github.io/blog">
   <title>line-height和vertical-align采坑记 | Jay Zangwill</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言原文 &amp;amp;&amp;amp; 个人主页知乎 &amp;amp;&amp;amp; 知乎专栏 由于在工作过程中经常遇到行内元素错位的问题，所以决定研究一下line-height和vertical-align，研究完后发现的确还有一些比较细节性的东西自己好不知道，这次打算和大家分享一下我自己的一些收获。">
 <meta name="keywords" content="css,基础">
 <meta property="og:type" content="article">
 <meta property="og:title" content="line-height和vertical-align采坑记">
-<meta property="og:url" content="https://github.com/JayZangwill/blog/2018/11/24/line-height-and-vertical-align/index.html">
+<meta property="og:url" content="https://jayzangwill.github.io/blog/2018/11/24/line-height-and-vertical-align/index.html">
 <meta property="og:site_name" content="Jay Zangwill">
 <meta property="og:description" content="前言原文 &amp;amp;&amp;amp; 个人主页知乎 &amp;amp;&amp;amp; 知乎专栏 由于在工作过程中经常遇到行内元素错位的问题，所以决定研究一下line-height和vertical-align，研究完后发现的确还有一些比较细节性的东西自己好不知道，这次打算和大家分享一下我自己的一些收获。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://github.com/blog/img/lineHeight/x_height.png">
-<meta property="og:image" content="https://github.com/blog/img/lineHeight/inline_box.png">
-<meta property="og:image" content="https://github.com/blog/img/lineHeight/height.jpg">
-<meta property="og:image" content="https://github.com/blog/img/lineHeight/line_box.png">
-<meta property="og:image" content="https://github.com/blog/img/lineHeight/gay.png">
-<meta property="og:image" content="https://github.com/blog/img/lineHeight/gay_2.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/lineHeight/x_height.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/lineHeight/inline_box.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/lineHeight/height.jpg">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/lineHeight/line_box.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/lineHeight/gay.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/lineHeight/gay_2.png">
 <meta property="og:updated_time" content="2020-04-07T03:29:17.937Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="line-height和vertical-align采坑记">
 <meta name="twitter:description" content="前言原文 &amp;amp;&amp;amp; 个人主页知乎 &amp;amp;&amp;amp; 知乎专栏 由于在工作过程中经常遇到行内元素错位的问题，所以决定研究一下line-height和vertical-align，研究完后发现的确还有一些比较细节性的东西自己好不知道，这次打算和大家分享一下我自己的一些收获。">
-<meta name="twitter:image" content="https://github.com/blog/img/lineHeight/x_height.png">
+<meta name="twitter:image" content="https://jayzangwill.github.io/blog/img/lineHeight/x_height.png">
   
     <link rel="alternative" href="/atom.xml" title="Jay Zangwill" type="application/atom+xml">
   
@@ -178,7 +178,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="https://jayzangwill.github.io/blog/2018/11/24/line-height-and-vertical-align/" target="_blank" rel="noopener">原文</a> &amp;&amp; <a href="https://www.jayzangwill.cn" target="_blank" rel="noopener">个人主页</a><br><a href="https://zhuanlan.zhihu.com/p/56943873" target="_blank" rel="noopener">知乎</a> &amp;&amp; <a href="https://zhuanlan.zhihu.com/jayzangwill" target="_blank" rel="noopener">知乎专栏</a></p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="https://jayzangwill.github.io/blog/2018/11/24/line-height-and-vertical-align/">原文</a> &amp;&amp; <a href="https://www.jayzangwill.cn" target="_blank" rel="noopener">个人主页</a><br><a href="https://zhuanlan.zhihu.com/p/56943873" target="_blank" rel="noopener">知乎</a> &amp;&amp; <a href="https://zhuanlan.zhihu.com/jayzangwill" target="_blank" rel="noopener">知乎专栏</a></p>
 <p>由于在工作过程中经常遇到行内元素错位的问题，所以决定研究一下line-height和vertical-align，研究完后发现的确还有一些比较细节性的东西自己好不知道，这次打算和大家分享一下我自己的一些收获。</p>
 <a id="more"></a>
 <h2 id="语法及规范"><a href="#语法及规范" class="headerlink" title="语法及规范"></a>语法及规范</h2><p>他们的语法和规范可点击一下链接，这里就不多说了。</p>
@@ -343,7 +343,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://github.com/JayZangwill/blog/2018/11/24/line-height-and-vertical-align/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://jayzangwill.github.io/blog/2018/11/24/line-height-and-vertical-align/" alt="微信分享二维码">
     </div>
 </div>
 

@@ -5,26 +5,26 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="https://github.com/JayZangwill/blog">
+  <link rel="dns-prefetch" href="https://jayzangwill.github.io/blog">
   <title>移动端适配 | Jay Zangwill</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言原文 &amp;amp;&amp;amp; 个人主页 知乎 &amp;amp;&amp;amp; 知乎专栏 背景随着移动端的普及，以及手机尺寸越来越多，这就衍生了众多的适配方案，以下挑一些常见的适配方案进行探讨。 本文默认读者已经对视口、物理像素、逻辑像素、css像素等移动端基本概念已经了解了。">
 <meta name="keywords" content="移动端,适配">
 <meta property="og:type" content="article">
 <meta property="og:title" content="移动端适配">
-<meta property="og:url" content="https://github.com/JayZangwill/blog/2019/04/02/flexible/index.html">
+<meta property="og:url" content="https://jayzangwill.github.io/blog/2019/04/02/flexible/index.html">
 <meta property="og:site_name" content="Jay Zangwill">
 <meta property="og:description" content="前言原文 &amp;amp;&amp;amp; 个人主页 知乎 &amp;amp;&amp;amp; 知乎专栏 背景随着移动端的普及，以及手机尺寸越来越多，这就衍生了众多的适配方案，以下挑一些常见的适配方案进行探讨。 本文默认读者已经对视口、物理像素、逻辑像素、css像素等移动端基本概念已经了解了。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://github.com/blog/img/common/biaoqing1.png">
-<meta property="og:image" content="https://github.com/blog/img/common/yaoming.jpeg">
-<meta property="og:image" content="https://github.com/blog/img/common/baobao.jpg">
-<meta property="og:image" content="https://github.com/blog/img/flexible/rpx.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/common/biaoqing1.png">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/common/yaoming.jpeg">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/common/baobao.jpg">
+<meta property="og:image" content="https://jayzangwill.github.io/blog/img/flexible/rpx.png">
 <meta property="og:updated_time" content="2020-04-07T03:29:17.935Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="移动端适配">
 <meta name="twitter:description" content="前言原文 &amp;amp;&amp;amp; 个人主页 知乎 &amp;amp;&amp;amp; 知乎专栏 背景随着移动端的普及，以及手机尺寸越来越多，这就衍生了众多的适配方案，以下挑一些常见的适配方案进行探讨。 本文默认读者已经对视口、物理像素、逻辑像素、css像素等移动端基本概念已经了解了。">
-<meta name="twitter:image" content="https://github.com/blog/img/common/biaoqing1.png">
+<meta name="twitter:image" content="https://jayzangwill.github.io/blog/img/common/biaoqing1.png">
   
     <link rel="alternative" href="/atom.xml" title="Jay Zangwill" type="application/atom+xml">
   
@@ -176,7 +176,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="https://jayzangwill.github.io/blog/2019/04/02/flexible/" target="_blank" rel="noopener">原文</a> &amp;&amp; <a href="https://www.jayzangwill.cn" target="_blank" rel="noopener">个人主页</a></p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="https://jayzangwill.github.io/blog/2019/04/02/flexible/">原文</a> &amp;&amp; <a href="https://www.jayzangwill.cn" target="_blank" rel="noopener">个人主页</a></p>
 <p><a href="https://zhuanlan.zhihu.com/p/61697375" target="_blank" rel="noopener">知乎</a> &amp;&amp; <a href="https://zhuanlan.zhihu.com/jayzangwill" target="_blank" rel="noopener">知乎专栏</a></p>
 <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>随着移动端的普及，以及手机尺寸越来越多，这就衍生了众多的适配方案，以下挑一些常见的适配方案进行探讨。</p>
 <p>本文默认读者已经对视口、物理像素、逻辑像素、css像素等移动端基本概念已经了解了。</p>
@@ -230,7 +230,7 @@
 <p>只不过小程序内部处理了一下，让rpx直接能够根据屏幕宽度自适应，而不是像rem那样依赖于根元素的<code>font-size</code></p>
 <h2 id="vw布局"><a href="#vw布局" class="headerlink" title="vw布局"></a>vw布局</h2><p>上一章基于屏幕百分比的rem布局小节中提到的<code>x</code>代表1份屏幕的宽度，在css中刚好有个单位代表这个<code>x</code>，即vw，至于vw是啥这里就不多说了，都9012年了，竟然还不知道vw是什么，<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/length" target="_blank" rel="noopener">传送门</a>。</p>
 <p>那么问题来了，平时我们拿到的设计图都是基于<code>px</code>标记的，怎么将<code>px</code>转为<code>vw</code>呢？</p>
-<p>emmm，这里有个专门的插件专门做这件事<a href="https://github.com/evrone/postcss-px-to-viewport">postcss-px-to-viewport</a></p>
+<p>emmm，这里有个专门的插件专门做这件事<a href="https://github.com/evrone/postcss-px-to-viewport" target="_blank" rel="noopener">postcss-px-to-viewport</a></p>
 <p>其代码中有这么一句：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">toFixed((pixels / viewportSize * <span class="number">100</span>), opts.unitPrecision)</span><br></pre></td></tr></table></figure>
 <p>是不是和我们上面所说的<code>实际的rem = 元素标注长度 / 设计图宽度(这里是750) * 100</code>很像？</p>
@@ -310,7 +310,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://github.com/JayZangwill/blog/2019/04/02/flexible/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://jayzangwill.github.io/blog/2019/04/02/flexible/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -324,11 +324,11 @@
   
 <nav id="article-nav">
   
-    <a href="/blog/2019/06/16/design/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/blog/2020/04/07/img-knowledge/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          设计基础
+          前端该如何选择图片的格式
         
       </div>
     </a>

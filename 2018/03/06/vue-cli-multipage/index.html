@@ -5,14 +5,14 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="https://github.com/JayZangwill/blog">
+  <link rel="dns-prefetch" href="https://jayzangwill.github.io/blog">
   <title>vue-cli-multipage | Jay Zangwill</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="基于vue-cli的多页面应用脚手架前言原文 掘金 知乎&amp;amp;知乎专栏 目前vue-cli生成的配置都是做多页面的，然而，我们有时也会有多页面的需求。同时，之前借用的这个多页面例子貌似作者不再维护了，导致webpack升级到webpack2就无法使用了，所以我就参考这个例子自己弄了个多页面脚手架，会不定期维护的。 代码地址：https://github.com/JayZangwill/vue-">
 <meta name="keywords" content="vue,vue-cli">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue-cli-multipage">
-<meta property="og:url" content="https://github.com/JayZangwill/blog/2018/03/06/vue-cli-multipage/index.html">
+<meta property="og:url" content="https://jayzangwill.github.io/blog/2018/03/06/vue-cli-multipage/index.html">
 <meta property="og:site_name" content="Jay Zangwill">
 <meta property="og:description" content="基于vue-cli的多页面应用脚手架前言原文 掘金 知乎&amp;amp;知乎专栏 目前vue-cli生成的配置都是做多页面的，然而，我们有时也会有多页面的需求。同时，之前借用的这个多页面例子貌似作者不再维护了，导致webpack升级到webpack2就无法使用了，所以我就参考这个例子自己弄了个多页面脚手架，会不定期维护的。 代码地址：https://github.com/JayZangwill/vue-">
 <meta property="og:locale" content="zh-CN">
@@ -171,11 +171,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="基于vue-cli的多页面应用脚手架"><a href="#基于vue-cli的多页面应用脚手架" class="headerlink" title="基于vue-cli的多页面应用脚手架"></a>基于vue-cli的多页面应用脚手架</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="https://jayzangwill.github.io/blog/2018/03/06/vue-cli-multipage/#more" target="_blank" rel="noopener">原文</a></p>
+        <h1 id="基于vue-cli的多页面应用脚手架"><a href="#基于vue-cli的多页面应用脚手架" class="headerlink" title="基于vue-cli的多页面应用脚手架"></a>基于vue-cli的多页面应用脚手架</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="https://jayzangwill.github.io/blog/2018/03/06/vue-cli-multipage/#more">原文</a></p>
 <p><a href="https://juejin.im/post/5a9e1716f265da237a4c85f9" target="_blank" rel="noopener">掘金</a></p>
 <p><a href="https://zhuanlan.zhihu.com/p/34272390" target="_blank" rel="noopener">知乎</a>&amp;<a href="https://zhuanlan.zhihu.com/jayzangwill" target="_blank" rel="noopener">知乎专栏</a></p>
-<p>目前vue-cli生成的配置都是做多页面的，然而，我们有时也会有多页面的需求。<br>同时，之前借用的<a href="https://github.com/breezefeng/vue-cli-multipage">这个</a>多页面例子貌似作者不再维护了，导致webpack升级到webpack2就无法使用了，所以我就参考这个例子自己弄了个多页面脚手架，会不定期维护的。</p>
-<p>代码地址：<a href="https://github.com/JayZangwill/vue-multipage">https://github.com/JayZangwill/vue-multipage</a><br>有什么问题可以在issues上提，欢迎star</p>
+<p>目前vue-cli生成的配置都是做多页面的，然而，我们有时也会有多页面的需求。<br>同时，之前借用的<a href="https://github.com/breezefeng/vue-cli-multipage" target="_blank" rel="noopener">这个</a>多页面例子貌似作者不再维护了，导致webpack升级到webpack2就无法使用了，所以我就参考这个例子自己弄了个多页面脚手架，会不定期维护的。</p>
+<p>代码地址：<a href="https://github.com/JayZangwill/vue-multipage" target="_blank" rel="noopener">https://github.com/JayZangwill/vue-multipage</a><br>有什么问题可以在issues上提，欢迎star</p>
 <a id="more"></a>
 <h2 id="下载-amp-使用"><a href="#下载-amp-使用" class="headerlink" title="下载&amp;使用"></a>下载&amp;使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/JayZangwill/vue-multipage</span><br><span class="line"><span class="built_in">cd</span> vue-multipage</span><br><span class="line">npm i</span><br><span class="line"></span><br><span class="line">//开发模式（运行完后要在浏览器输入http://localhost:8081/module/index）</span><br><span class="line">npm run dev</span><br><span class="line"></span><br><span class="line">//生产模式</span><br><span class="line">npmrun build</span><br></pre></td></tr></table></figure>
 <h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">vue-multipage</span><br><span class="line">  |---build</span><br><span class="line">  |---config</span><br><span class="line">  |---src</span><br><span class="line">    |---assets   </span><br><span class="line">    |---components  组件</span><br><span class="line">      |---HelloWorld.vue</span><br><span class="line">      |---other.vue</span><br><span class="line">    |---module多页面模块</span><br><span class="line">      |---index  </span><br><span class="line">        |---index.html</span><br><span class="line">        |---index.js</span><br><span class="line">        |---App.vue</span><br><span class="line">      |---other</span><br><span class="line">        |---index.html</span><br><span class="line">        |---other.js</span><br><span class="line">        |---App.vue</span><br></pre></td></tr></table></figure>
@@ -260,7 +260,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://github.com/JayZangwill/blog/2018/03/06/vue-cli-multipage/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://jayzangwill.github.io/blog/2018/03/06/vue-cli-multipage/" alt="微信分享二维码">
     </div>
 </div>
 
