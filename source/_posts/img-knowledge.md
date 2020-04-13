@@ -172,13 +172,22 @@ PNG-8格式与GIF图像类似，同样采用8位调色板将RGB彩色图像转�
 2. 不支持动画，如需支持动画还得使用apng
 
 
-# APNG
+## APNG
 
 APNG（Animated Portable Network Graphics）是一个基于PNG（Portable Network Graphics）的位图动画格式。实际上就是多张png组成的动图。MAC电脑打开可以看到组成apng的每一张图。
 
+### 优点
+
+1. 支持png的所有优点
+2. 支持动画
+
+### 缺点
+
+1. 浏览器支持情况较差
+
 ![apng浏览器支持](/blog/img/img/apng_support.png)
 
-# WEBP
+## WEBP
 
 WebP是由Google最初在2010年发布，目标是减少文件大小。它能同时支持无损压缩和有损压缩。
 
@@ -194,7 +203,61 @@ webp
 
 可以看到，webp的体积要比jpg的还要小差不多**50%**！
 
-
 悲剧的是，webp支持率有点感人
 
 ![webp](/blog/img/img/webp_support.png)
+
+## SVG
+
+SVG是一种用XML定义的语言，用来描述二维矢量及矢量/栅格图形。SVG提供了3种类型的图形对象：矢量图形（例如：由直线和曲线组成的路径）、图象、文本。图形对象还可进行分组、添加样式、变换、组合等操作，特征集包括嵌套变换、剪切路径、alpha蒙板、滤镜效果、模板对象和其它扩展。
+SVG图形是可交互的和动态的，可以在SVG文件中嵌入动画元素或通过脚本来定义动画。
+
+SVG与上面图片不同的是它是矢量图，无论你怎么放大，它都不会失真；同时，SVG文件通常要比比JPEG和PNG格式的文件要小很多。
+
+### 优点
+
+1. SVG 可被非常多的工具读取和修改（比如记事本）
+2. SVG 与 JPEG 和 GIF 图像比起来，尺寸更小，且可压缩性更强。
+3. SVG 是可伸缩的
+4. SVG 图像可在任何的分辨率下被高质量地打印
+5. SVG 可在图像质量不下降的情况下被放大
+6. SVG 可以与 JavaScript 技术一起运行
+7. SVG 文件是纯粹的 XML
+
+### 缺点
+
+1. 渲染成本相对于其他格式图片比较高，对于性能有影响。
+2. 需要学习成本，因为SVG是一种用XML定义的语言。
+
+## SVGA
+
+SVGA其实就是一个动画播放引擎，在这里说到它其实有点脱离了主题，所以就简单提下。
+
+svga的用法可见[官方文档](https://github.com/yyued/SVGAPlayer-Web)
+
+如果你是vue的用户，可以使用我封装的[vue-svga](https://github.com/JayZangwill/vue-svga)组件，是基于[svga.lite](https://github.com/svga/SVGAPlayer-Web-Lite)封装的，`svga.lite`是`SVGAPlayer`的阉割版。
+
+当设计需要输出复杂动画的时候可以考虑输出svga格式的文件。相比[bodymovin](https://github.com/airbnb/lottie-web)输出的json文件要小很多。
+
+### 优点
+
+1. 可以控制动画的播放与暂停，还可以监听动画的播放状态
+2. 体积相对于apng更小
+3. 可以随意地放大缩小而不失真
+4. 浏览器兼容性良好
+
+### 缺点
+
+1. 需要js解析，同一页面不宜使用过多`svga`动画，否则会消耗过多的性能。
+
+# 如何选择图片的格式
+
+通过分析以上常见图片的优缺点我们可以像下图一样选择图片的格式
+
+![如何选择图片的格式](/blog/img/img/result.png)
+
+# 参考链接
+
+[每个前端工程师都应该了解的图片知识](https://mp.weixin.qq.com/s/j6V5CLeHJzU5WxysmnQUqg)
+[背景透明图片格式png8、png24、png32区别](https://www.ablanxue.com/prone_36030_1.html)
+[关于 PNG8/PNG24/PNG32 之间的区别](https://www.cnblogs.com/viphchok/articles/5394631.html)
