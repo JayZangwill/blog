@@ -72,3 +72,18 @@ deploy:
   repository: git@github.com:JayZangwill/blog.git
   branch: gh-pages
 
+exclude: template.xml
+
+feed:
+  type: rss2
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 300
+  content_limit_delim: ' '
+  order_by: -date
+  icon: touxiang.ico
+  autodiscovery: true
+  template: ./source/template.xml
+
